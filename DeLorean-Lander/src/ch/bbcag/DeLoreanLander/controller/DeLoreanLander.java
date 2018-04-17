@@ -1,22 +1,26 @@
 package ch.bbcag.DeLoreanLander.controller;
 
+import java.awt.event.KeyEvent;
+
 import ch.aplu.jgamegrid.Actor;
+import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.util.HiResTimer;
 
-public class DeLoreanLander {
+public class DeLoreanLander extends Actor implements GGKeyListener {
 	private double startFuel= 1000;
-	private final Actor lorean = new Actor("sprites/lorean_car.gif");
+	private final Actor lorean = new Actor("resources/sprites/lorean_car.png");
 	private boolean isLanded = false;
 	private final HiResTimer timer = new HiResTimer();
 	private double speedDown;
 	private double speedUp;
 	private boolean fuelExpired; // Kraftstoff abgelaufen
-	private double remainFuel; //verbleibender Kraftstoff
-	private final Actor firstLandingField = new Actor("sprites/");
-	private final Actor secondLandingField = new Actor("sprites/");
-	private final Actor thirdLandingField = new Actor("sprites/");
+	private double remainFuel; // verbleibender Kraftstoff
+//	private final Actor firstLandingField = new Actor("sprites/");
+//	private final Actor secondLandingField = new Actor("sprites/");
+//	private final Actor thirdLandingField = new Actor("sprites/");
 	
 	public DeLoreanLander() {
+		super("resources/sprites/lorean_car.png");
 		
 		}
 
@@ -76,15 +80,15 @@ public class DeLoreanLander {
 		this.remainFuel = remainFuel;
 	}
 
-	public Actor getFirstLandingField() {
-		return firstLandingField;
+	@Override
+	public boolean keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public Actor getSecondLandingField() {
-		return secondLandingField;
-	}
-
-	public Actor getThirdLandingField() {
-		return thirdLandingField;
+	@Override
+	public boolean keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
