@@ -1,9 +1,6 @@
 package ch.bbcag.DeLoreanLander.view;
 
-import com.sun.prism.paint.Color;
-
 import ch.aplu.jgamegrid.Actor;
-import ch.aplu.jgamegrid.GGKeyListener;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
