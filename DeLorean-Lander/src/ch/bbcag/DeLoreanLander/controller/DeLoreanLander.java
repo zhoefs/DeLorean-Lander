@@ -13,7 +13,7 @@ public class DeLoreanLander extends Actor{
 	private double positionY;
 	private double speedDown;
 	private double speedUp;
-	private double acceleration; // Beschleunigung 
+	private double acceleration; // Beschleunigungvom DeLorean
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
 //	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
