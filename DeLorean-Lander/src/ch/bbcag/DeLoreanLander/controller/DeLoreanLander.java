@@ -9,8 +9,11 @@ public class DeLoreanLander extends Actor{
 	private final Actor lorean = new Actor("resources/sprites/lorean_car.png");
 	private boolean isLanded = false;
 	private final HiResTimer timer = new HiResTimer();
+	private double positionX; 
+	private double positionY;
 	private double speedDown;
 	private double speedUp;
+	private double acceleration; // Beschleunigung 
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
 //	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
@@ -24,6 +27,9 @@ public class DeLoreanLander extends Actor{
 	@Override
 	public void reset() {
 		final GameGrid gg = gameGrid;
+		positionY = getLocationStart().x;
+		positionY = getLocationStart().y;
+		speedDown = 0;
 	}
 
 	public double getStartFuel() {
@@ -80,6 +86,30 @@ public class DeLoreanLander extends Actor{
 
 	public void setRemainFuel(double remainFuel) {
 		this.remainFuel = remainFuel;
+	}
+
+	public double getAcceleration() {
+		return acceleration;
+	}
+
+	public void setAcceleration(double acceleration) {
+		this.acceleration = acceleration;
+	}
+
+	public double getPositionY() {
+		return positionY;
+	}
+
+	public void setPositionY(double positionY) {
+		this.positionY = positionY;
+	}
+
+	public double getPositionX() {
+		return positionX;
+	}
+
+	public void setPositionX(double positionX) {
+		this.positionX = positionX;
 	}
 	
 }
