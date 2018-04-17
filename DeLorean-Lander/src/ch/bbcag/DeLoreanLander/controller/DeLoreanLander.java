@@ -1,12 +1,10 @@
 package ch.bbcag.DeLoreanLander.controller;
 
-import java.awt.event.KeyEvent;
-
 import ch.aplu.jgamegrid.Actor;
-import ch.aplu.jgamegrid.GGKeyListener;
+import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.util.HiResTimer;
 
-public class DeLoreanLander extends Actor implements GGKeyListener {
+public class DeLoreanLander extends Actor{
 	private double startFuel= 1000;
 	private final Actor lorean = new Actor("resources/sprites/lorean_car.png");
 	private boolean isLanded = false;
@@ -15,16 +13,18 @@ public class DeLoreanLander extends Actor implements GGKeyListener {
 	private double speedUp;
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
-	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
+//	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
 //	private final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
 //	private final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
 	
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
-		
 		}
 	
-	
+	@Override
+	public void reset() {
+		final GameGrid gg = gameGrid;
+	}
 
 	public double getStartFuel() {
 		return startFuel;
@@ -81,16 +81,5 @@ public class DeLoreanLander extends Actor implements GGKeyListener {
 	public void setRemainFuel(double remainFuel) {
 		this.remainFuel = remainFuel;
 	}
-
-	@Override
-	public boolean keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }

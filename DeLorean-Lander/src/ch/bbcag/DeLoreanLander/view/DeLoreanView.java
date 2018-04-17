@@ -20,7 +20,6 @@ public class DeLoreanView extends GameGrid {
 		addActor(firstLandingField,new Location(350,400));
 		addActor(secondLandingField,new Location(700,920));
 		addActor(thirdLandingField,new Location(1480,780));
-		addKeyListener(lorean);
 		show();
 		GameGrid.delay(3000);
 		doRun(); 
