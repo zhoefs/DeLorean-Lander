@@ -1,4 +1,4 @@
-package ch.bbcag.DeLoreanlander.controller;
+package ch.bbcag.DeLoreanLander.controller;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.util.HiResTimer;

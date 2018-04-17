@@ -1,4 +1,4 @@
-package ch.bbcag.DeLoreanlander.controller;
+package ch.bbcag.DeLoreanLander.Xboxcontroller;
 
 import ch.aplu.xboxcontroller.*;
 import javax.swing.JOptionPane;
