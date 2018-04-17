@@ -26,7 +26,7 @@ public class RumbleDemo {
 	      xc.release();
 	      return;
 	    }
-	    
+	    	
 	    xc.addXboxControllerListener(new XboxControllerAdapter()
 	    {
 	      public void leftTrigger(double value)
