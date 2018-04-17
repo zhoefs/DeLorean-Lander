@@ -17,11 +17,11 @@ public class DeLoreanView extends GameGrid {
 		final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
 		addActor(lorean, new Location(670, 100));
-		addActor(firstLandingField,new Location(350,400));
-		addActor(secondLandingField,new Location(700,920));
+		addActor(firstLandingField,new Location(400,410));
+		addActor(secondLandingField,new Location(700,910));
 		addActor(thirdLandingField,new Location(1480,780));
 		show();
-		GameGrid.delay(3000);
+		GameGrid.delay(3000); // Verzögerung
 		doRun(); 
 	}
 
