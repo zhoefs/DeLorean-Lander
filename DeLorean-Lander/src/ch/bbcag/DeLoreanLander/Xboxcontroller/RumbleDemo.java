@@ -8,6 +8,11 @@ public class RumbleDemo {
 	private int leftVibrate = 0;
 	private int rightVibrate = 0;
 
+	static boolean is64bit()
+	{
+	  return System.getProperty("sun.arch.data.model").equals("64");
+	}
+	
 	public RumbleDemo()
 	  { 
 	    xc = new XboxController();
