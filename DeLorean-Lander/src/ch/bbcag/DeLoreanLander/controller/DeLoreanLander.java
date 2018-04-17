@@ -15,14 +15,16 @@ public class DeLoreanLander extends Actor implements GGKeyListener {
 	private double speedUp;
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
-//	private final Actor firstLandingField = new Actor("sprites/");
-//	private final Actor secondLandingField = new Actor("sprites/");
-//	private final Actor thirdLandingField = new Actor("sprites/");
+	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
+//	private final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
+//	private final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
 	
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
 		
 		}
+	
+	
 
 	public double getStartFuel() {
 		return startFuel;
