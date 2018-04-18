@@ -12,30 +12,27 @@ public class DeLoreanView extends GameGrid {
 	private XboxControllerListener controller;
 
 	public DeLoreanView() {
-		super(180, 100, 10,java.awt.Color.RED,"resources/sprites/western_background.png", false);
+		super(180, 100, 10, java.awt.Color.RED, "resources/sprites/western_background.png", false);
 		setSimulationPeriod(50);
 		final DeLoreanLander lorean = new DeLoreanLander();
 		final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
 		addActor(lorean, new Location(65, 10));
-		addActor(firstLandingField, new Location(30,40));
-		addActor(secondLandingField, new Location(80,95));
-		addActor(thirdLandingField, new Location(147,77));
-		
+		addActor(firstLandingField, new Location(30, 40));
+		addActor(secondLandingField, new Location(80, 95));
+		addActor(thirdLandingField, new Location(147, 77));
+
 		this.controller = new XboxControllerListener(lorean, this);
 
-		
 		show();
 		GameGrid.delay(3000); // Verzögerung
 		doPause();
-		
-		
-		
+
 	}
-	
+
 	public void gameStart() {
-		doRun(); 
+		doRun();
 	}
 
 	public static void main(final String[] args) {

@@ -18,21 +18,22 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 	public void dpad(int direction, boolean pressed) {
 		System.out.println("dpad: Direction " + direction + " pressed: " + pressed);
 
-		if(pressed) {
+		if (pressed) {
 			this.deLoreanLander.accelerate(direction);
 		} else {
 			this.deLoreanLander.stop();
 		}
-		
+
 	}
+
 	public void back(boolean pressed) {
-		if(pressed) {
+		if (pressed) {
 			System.exit(0);
 		}
 	}
-	
+
 	public void start(boolean pressed) {
-		if(pressed) {
+		if (pressed) {
 			deLoreanView.gameStart();
 		}
 	}

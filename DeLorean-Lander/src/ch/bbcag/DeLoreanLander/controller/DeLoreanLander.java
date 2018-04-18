@@ -19,7 +19,7 @@ public class DeLoreanLander extends Actor {
 	private int ds = 0;
 
 	public DeLoreanLander() {
-		super("resources/sprites/lorean_car.png");	
+		super("resources/sprites/lorean_car.png");
 	}
 
 	/*
@@ -28,16 +28,16 @@ public class DeLoreanLander extends Actor {
 	 * remainFuel = startFuel; fuelExpired = false; }
 	 */
 
-	public void act() {		
+	public void act() {
 		System.out.println("Position X: " + positionX + "     DS: " + ds);
 		positionX += ds;
-		
+
 		this.setLocation(new Location(this.positionX, positionY));
 	}
 
 	public void accelerate(int dpadCode) {
-		
-		if (dpadCode == 5||dpadCode == 6||dpadCode == 7) {
+
+		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
 			if (getX() == 5)
 				ds = 0;
 			else {
@@ -45,7 +45,7 @@ public class DeLoreanLander extends Actor {
 			}
 			positionX = getX() + ds;
 		}
-		if (dpadCode == 1||dpadCode == 2||dpadCode == 3) {
+		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
 			if (getX() == 175)
 				ds = 0;
 			else {
