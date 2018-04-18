@@ -32,6 +32,7 @@ public class DeLoreanLander extends Actor{
 		positionY = getLocationStart().y;
 		speedDown = 0;
 		remainFuel = startFuel;
+		fuelExpired = false;
 	}
 
 	public double getStartFuel() {
@@ -113,5 +114,12 @@ public class DeLoreanLander extends Actor{
 	public void setPositionX(double positionX) {
 		this.positionX = positionX;
 	}
-	
+
+	public double getFuelFactor() {
+		return fuelFactor;
+	}
+
+	public void setFuelFactor(double fuelFactor) {
+		this.fuelFactor = fuelFactor;
+	}
 }

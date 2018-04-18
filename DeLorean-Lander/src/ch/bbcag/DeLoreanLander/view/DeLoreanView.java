@@ -10,16 +10,16 @@ public class DeLoreanView extends GameGrid {
 	private static final long serialVersionUID = 1L;
 
 	public DeLoreanView() {
-		super(1700, 1000, 1, null,"resources/sprites/western_background.png", false);
+		super(180, 100, 10,java.awt.Color.RED,"resources/sprites/western_background.png", false);
 		setSimulationPeriod(50);
 		final DeLoreanLander lorean = new DeLoreanLander();
 		final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
-		addActor(lorean, new Location(670, 100));
-		addActor(firstLandingField, new Location(400,410));
-		addActor(secondLandingField, new Location(700,910));
-		addActor(thirdLandingField, new Location(1480,780));
+		addActor(lorean, new Location(65,10));
+		addActor(firstLandingField, new Location(30,40));
+		addActor(secondLandingField, new Location(80,95));
+		addActor(thirdLandingField, new Location(147,77));
 		show();
 		GameGrid.delay(3000); // Verzögerung
 		doRun(); 
