@@ -2,7 +2,6 @@ package ch.bbcag.DeLoreanLander.controller;
 
 import ch.aplu.jgamegrid.*;
 import ch.aplu.util.HiResTimer;
-import ch.bbcag.DeLoreanLander.Xboxcontroller.XboxControllerListener;
 
 public class DeLoreanLander extends Actor {
 	private double startFuel = 1000;
@@ -17,13 +16,10 @@ public class DeLoreanLander extends Actor {
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
 	private double fuelFactor = 0.5;
-	private int ds = 1;
-	private XboxControllerListener controller;
+	private int ds = 0;
 
 	public DeLoreanLander() {
-		super("resources/sprites/lorean_car.png");
-
-		this.controller = new XboxControllerListener(this);
+		super("resources/sprites/lorean_car.png");	
 	}
 
 	/*

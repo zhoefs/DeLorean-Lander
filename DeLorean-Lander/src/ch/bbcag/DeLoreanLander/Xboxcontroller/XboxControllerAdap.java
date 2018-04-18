@@ -33,7 +33,7 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 	
 	public void start(boolean pressed) {
 		if(pressed) {
-			this.deLoreanView.DeLoreanView(pressed);
+			deLoreanView.gameStart();
 		}
 	}
 
