@@ -17,9 +17,6 @@ public class DeLoreanLander extends Actor{
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
 	private double fuelFactor = 0.5;
-//	private final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
-//	private final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
-//	private final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
 	
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
@@ -33,93 +30,5 @@ public class DeLoreanLander extends Actor{
 		speedDown = 0;
 		remainFuel = startFuel;
 		fuelExpired = false;
-	}
-
-	public double getStartFuel() {
-		return startFuel;
-	}
-
-	public void setStartFuel(double startFuel) {
-		this.startFuel = startFuel;
-	}
-
-	public Actor getLorean() {
-		return lorean;
-	}
-
-	public boolean isLanded() {
-		return isLanded;
-	}
-
-	public void setLanded(boolean isLanded) {
-		this.isLanded = isLanded;
-	}
-
-	public HiResTimer getTimer() {
-		return timer;
-	}
-
-	public double getSpeedDown() {
-		return speedDown;
-	}
-
-	public void setSpeedDown(double speedDown) {
-		this.speedDown = speedDown;
-	}
-
-	public double getSpeedUp() {
-		return speedUp;
-	}
-
-	public void setSpeedUp(double speedUp) {
-		this.speedUp = speedUp;
-	}
-
-	public boolean isFuelExpired() {
-		return fuelExpired;
-	}
-
-	public void setFuelExpired(boolean fuelExpired) {
-		this.fuelExpired = fuelExpired;
-	}
-
-	public double getRemainFuel() {
-		return remainFuel;
-	}
-
-	public void setRemainFuel(double remainFuel) {
-		this.remainFuel = remainFuel;
-	}
-
-	public double getAcceleration() {
-		return acceleration;
-	}
-
-	public void setAcceleration(double acceleration) {
-		this.acceleration = acceleration;
-	}
-
-	public double getPositionY() {
-		return positionY;
-	}
-
-	public void setPositionY(double positionY) {
-		this.positionY = positionY;
-	}
-
-	public double getPositionX() {
-		return positionX;
-	}
-
-	public void setPositionX(double positionX) {
-		this.positionX = positionX;
-	}
-
-	public double getFuelFactor() {
-		return fuelFactor;
-	}
-
-	public void setFuelFactor(double fuelFactor) {
-		this.fuelFactor = fuelFactor;
 	}
 }
