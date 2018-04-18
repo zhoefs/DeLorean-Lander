@@ -16,7 +16,7 @@ public class DeLoreanView extends GameGrid {
 		final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor thirdLandingField = new Actor("resources/sprites/landing_path.png");
-		addActor(lorean, new Location(65,10));
+		addActor(lorean, new Location(65, 10));
 		addActor(firstLandingField, new Location(30,40));
 		addActor(secondLandingField, new Location(80,95));
 		addActor(thirdLandingField, new Location(147,77));
