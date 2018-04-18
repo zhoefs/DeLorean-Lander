@@ -32,10 +32,7 @@ public class DeLoreanLander extends Actor {
 	 * remainFuel = startFuel; fuelExpired = false; }
 	 */
 
-	public void act() {
-		//System.out.println("Calling Fish.act()");
-
-		
+	public void act() {		
 		System.out.println("Position X: " + positionX + "     DS: " + ds);
 		positionX += ds;
 		

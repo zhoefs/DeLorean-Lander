@@ -3,12 +3,13 @@ package ch.bbcag.DeLoreanLander.Xboxcontroller;
 import javax.swing.JOptionPane;
 import ch.aplu.xboxcontroller.*;
 import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
+import ch.bbcag.DeLoreanLander.view.*;
 
 public class XboxControllerListener {
 
 	private XboxController xc;
 
-	public XboxControllerListener(DeLoreanLander deLoreanLander) {
+	public XboxControllerListener(DeLoreanLander deLoreanLander, DeLoreanView deLoreanView) {
 		xc = new XboxController();
 
 		if (!xc.isConnected()) {
@@ -18,6 +19,6 @@ public class XboxControllerListener {
 			return;
 		}
 
-		xc.addXboxControllerListener(new XboxControllerAdap(deLoreanLander));
+		xc.addXboxControllerListener(new XboxControllerAdap(deLoreanLander, deLoreanView));
 	}
 }
