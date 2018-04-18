@@ -20,7 +20,7 @@ public class RumbleDemo {
 	    if (!xc.isConnected())
 	    {
 	      JOptionPane.showMessageDialog(null, 
-	        "Xbox controller not connected.",
+	        "XBox Controller not connected.",
 	        "Fatal error", 
 	        JOptionPane.ERROR_MESSAGE);
 	      xc.release();
@@ -40,15 +40,6 @@ public class RumbleDemo {
 	        xc.vibrate(leftVibrate, rightVibrate);
 	      }
 	    });
-	    
-	    JOptionPane.showMessageDialog(null, 
-	      "Xbox controller connected.\n" + 
-	      "Press left or right trigger, Ok to quit.",
-	        "RumbleDemo V1.0 (www.aplu.ch)", 
-	        JOptionPane.PLAIN_MESSAGE);
-	    
-	    xc.release();
-	    System.exit(0);
 	  }
 
 	public static void main(String[] args) {
