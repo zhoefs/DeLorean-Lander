@@ -1,6 +1,8 @@
 package ch.bbcag.DeLoreanLander.controller;
 
-import ch.aplu.jgamegrid.*;
+import ch.aplu.jgamegrid.Actor;
+import ch.aplu.jgamegrid.GameGrid;
+import ch.aplu.jgamegrid.Location;
 import ch.aplu.util.HiResTimer;
 
 public class DeLoreanLander extends Actor {
@@ -42,12 +44,6 @@ public class DeLoreanLander extends Actor {
 			s = String.format(" Acceleration = %10.2f m/s^2    	 Fuel = %10.0f kg", acceleration, remainFuel);
 		}
 		gg.setTitle(s);
-
-		final double dt = 2 * gg.getSimulationPeriod() / 1000.0;
-		speedDown = positionDown + acceleration * dt;
-		positionDown = positionDown + positionDown * dt;
-		remainFuel = remainFuel - thrustLevel * fuelFactor;
-
 	}
 
 	public void accelerate(int dpadCode) {
