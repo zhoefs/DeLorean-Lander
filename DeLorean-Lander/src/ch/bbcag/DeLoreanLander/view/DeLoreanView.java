@@ -9,7 +9,7 @@ import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
 public class DeLoreanView extends GameGrid {
 
 	private static final long serialVersionUID = 1L;
-	private XboxControllerListener controller;
+	private XboxControllerListener controller = null;
 
 	public DeLoreanView() {
 		super(180, 100, 10, java.awt.Color.RED, "resources/sprites/western_background.png", false);
@@ -26,9 +26,6 @@ public class DeLoreanView extends GameGrid {
 		this.controller = new XboxControllerListener(lorean, this);
 
 		show();
-		GameGrid.delay(3000); // Verzögerung
-		doPause();
-
 	}
 
 	public void gameStart() {
