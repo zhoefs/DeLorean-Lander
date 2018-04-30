@@ -42,7 +42,7 @@ public class DeLoreanLander extends Actor {
 			s = String.format(" Acceleration = %10.2f m/s^2    	 Fuel = %10.0f kg", acceleration, remainFuel);
 		}
 		gg.setTitle(s);
-		
+
 		final double dt = 2 * gg.getSimulationPeriod() / 1000.0;
 		speedDown = positionDown + acceleration * dt;
 		positionDown = positionDown + positionDown * dt;
@@ -51,7 +51,6 @@ public class DeLoreanLander extends Actor {
 	}
 
 	public void accelerate(int dpadCode) {
-
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
 			if (getX() <= 5)
 				ds = 0;
