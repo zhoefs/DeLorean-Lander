@@ -13,7 +13,7 @@ public class DeLoreanView extends GameGrid {
 
 	public DeLoreanView() {
 		super(180, 100, 10, java.awt.Color.RED, "resources/sprites/western_background.png", false);
-		setSimulationPeriod(40);
+		setSimulationPeriod(35);
 		final DeLoreanLander lorean = new DeLoreanLander();
 		final Actor firstLandingField = new Actor("resources/sprites/landing_path.png");
 		final Actor secondLandingField = new Actor("resources/sprites/landing_path.png");
