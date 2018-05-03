@@ -16,8 +16,7 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 	}
 
 	public void dpad(int direction, boolean pressed) {
-		System.out.println("dpad: Direction " + direction + " pressed: " + pressed);
-
+        System.out.println(direction + " " + pressed);
 		if (pressed) {
 			this.deLoreanLander.accelerate(direction);
 		} else {

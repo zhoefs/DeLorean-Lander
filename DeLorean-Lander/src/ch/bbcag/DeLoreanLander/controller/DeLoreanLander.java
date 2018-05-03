@@ -1,92 +1,111 @@
 package ch.bbcag.DeLoreanLander.controller;
 
 import ch.aplu.jgamegrid.Actor;
-import ch.aplu.jgamegrid.GameGrid;
+import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.Location;
-import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 
-public class DeLoreanLander extends Actor {
+public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	private int positionX = 60;
 	private int positionY = 8;
 	private double speedDown = 1;
+	public void setSpeedDown(double speedDown) {
+		this.speedDown = speedDown;
+	}
+
 	private double acceleration; // Beschleunigung vom DeLorean
 	private boolean fuelExpired; // Kraftstoff abgelaufen
 	private double remainFuel; // verbleibender Kraftstoff
-	private int direction = 0; // -1 left, 1, right, 0
+	private int direction = 0; // -1 left, 1 right, 0 stay
+	private int fallSpeed = 5;
 
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
+		addActorCollisionListener(this);
+	}
+
+	@Override
+	public int collide(Actor deLorean, Actor landingBase) {
+		((DeLoreanLander) deLorean).setSpeedDown(0);
+		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 2));
+		deLorean.hide();
+		return super.collide(deLorean, landingBase);
 	}
 
 	public void act() {
 
-		System.out.println("Position X: " + positionX + "     DS: " + direction);
+		// new horizontal location
 		if (getX() >= 5 && getX() <= 175) {
 			positionX += direction;
 		}
-		System.out.println("Position Y: " + positionY + "     DS: " + direction);
-		if (getY() >= 95 && getY() <= 5) {
-			positionY += direction;
-		}
 
+		// new vertical location - DeLorean falls down
+		setSlowDown(fallSpeed);
 		positionY = (int) (positionY + speedDown);
+
 		checkPositionOutOfGrid();
 
 		this.setLocation(new Location(this.positionX, positionY));
 
-		final GameGrid gg = gameGrid;
-		String s;
-		if (fuelExpired) {
-			s = String.format(" Acceleration = %10.2f m/s^2      Fuel = %10.0f kg", acceleration, remainFuel);
-		} else {
-			s = String.format(" Acceleration = %10.2f m/s^2    	 Fuel = %10.0f kg", acceleration, remainFuel);
-		}
-		gg.setTitle(s);
-
-		Actor actor = gameGrid.getOneActorAt(this.getLocation(), DeLoreanView.class);
-		if (actor != null) {
-		}
 	}
 
 	public void accelerate(int dpadCode) {
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
-			if (getX() <= 5)
+			if (getX() <= 5) {
 				direction = 0;
-			else {
+			} else {
 				direction = -1;
 			}
 			positionX = getX() + direction;
 		}
 		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
-			if (getX() >= 175)
+			if (getX() >= 175) {
 				direction = 0;
-			else {
+			} else {
 				direction = 1;
 			}
 			positionX = getX() + direction;
 		}
+		
 		if (dpadCode == 0) {
-			if (getX() <= 5)
-				direction = 1;
+			
+			// down
+			if(speedDown > 0) {
+				if(fallSpeed != 10) {
+					fallSpeed++;
+				}
+				
+				if(fallSpeed == 10) {
+					speedDown = 0;
+				}
+				
+			}
+			
+			// stay
+			else if (speedDown == 0) {
+				speedDown = -1;
+			}
+			
+			// up
 			else {
-				direction = 0;
+				if(fallSpeed >= 5) {
+					fallSpeed--;
+				}
 			}
 		}
 	}
 
-	private void checkPositionOutOfGrid() {
-		if (getY() >= 98)
-			direction = 0;
-		else {
-			direction = 1;
+	public void accelerateUp(int dpadCode) {
+		if (dpadCode == 0) {
+			positionY = (int) (getY() - direction - speedDown);
+			System.out.println("Schnelligkeit: " + speedDown);
+			speedDown = speedDown - 0.1;
 		}
-		positionY = getY() + direction;
+	}
 
-		if (getY() <= 5)
-			direction = -1;
-		else {
-			direction = 0;
+	private void checkPositionOutOfGrid() {
+		if (getY() >= 98) {
 		}
 	}
 

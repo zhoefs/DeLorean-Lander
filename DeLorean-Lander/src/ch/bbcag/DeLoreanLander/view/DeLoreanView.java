@@ -22,6 +22,9 @@ public class DeLoreanView extends GameGrid {
 		addActor(firstLandingField, new Location(30, 40));
 		addActor(secondLandingField, new Location(80, 95));
 		addActor(thirdLandingField, new Location(147, 77));
+		lorean.addCollisionActor(firstLandingField);
+		lorean.addCollisionActor(secondLandingField);
+		lorean.addCollisionActor(thirdLandingField);
 
 		this.controller = new XboxControllerListener(lorean, this);
 
