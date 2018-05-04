@@ -5,19 +5,19 @@ import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.Location;
 
 public class DeLoreanLander extends Actor implements GGActorCollisionListener {
+	private static final double MAX_ACCELERATION = 1.6;
+	private static final int MAX_POWER_LEVELS = 8;
 
-	private int positionX = 60;
-	private int positionY = 8;
-	private double speedDown = 1;
-	public void setSpeedDown(double speedDown) {
-		this.speedDown = speedDown;
-	}
+	private double velocity = 0d;
+	private double acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+	private int powerLevel = 0;
 
-	private double acceleration; // Beschleunigung vom DeLorean
-	private boolean fuelExpired; // Kraftstoff abgelaufen
-	private double remainFuel; // verbleibender Kraftstoff
-	private int direction = 0; // -1 left, 1 right, 0 stay
-	private int fallSpeed = 5;
+	private int horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+
+	private double xPos = 90;
+	private double yPos = 10;
+
+	// private final Actor thrust = new Actor("resources/sprites/thrust.png", 9);
 
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
@@ -26,90 +26,110 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	@Override
 	public int collide(Actor deLorean, Actor landingBase) {
-		((DeLoreanLander) deLorean).setSpeedDown(0);
 		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
 		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 2));
 		deLorean.hide();
+		setActEnabled(false);
+		powerLevel = 0;
 		return super.collide(deLorean, landingBase);
 	}
 
 	public void act() {
 
-		// new horizontal location
-		if (getX() >= 5 && getX() <= 175) {
-			positionX += direction;
+		// vertical
+		final double dt = 2 * gameGrid.getSimulationPeriod() / 1000.0; // Time scaled: * 2
+		velocity = velocity + acceleration * dt;
+		yPos = yPos + velocity * dt;
+
+		if (yPos <= 5) {
+			acceleration = MAX_ACCELERATION;
+			powerLevel = 0;
+			velocity = 0;
 		}
 
-		// new vertical location - DeLorean falls down
-		setSlowDown(fallSpeed);
-		positionY = (int) (positionY + speedDown);
+		// horizontal
+		xPos = xPos + horizontalVelocity;
 
-		checkPositionOutOfGrid();
+		if (xPos <= 5 || xPos >= 175) {
+			horizontalVelocity = 0;
+		}
 
-		this.setLocation(new Location(this.positionX, positionY));
-
+		setLocation(new Location((int) xPos, (int) yPos));
 	}
 
 	public void accelerate(int dpadCode) {
+		final double accelerationFactor = 2 * MAX_ACCELERATION / MAX_POWER_LEVELS;
+
+		// left
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
-			if (getX() <= 5) {
-				direction = 0;
-			} else {
-				direction = -1;
+
+			switch (horizontalVelocity) {
+			case 3:
+				horizontalVelocity = 2;
+				break;
+			case 2:
+				horizontalVelocity = 1;
+				break;
+			case 1:
+				horizontalVelocity = 0;
+				break;
+			case 0:
+				horizontalVelocity = -1;
+				break;
+			case -1:
+				horizontalVelocity = -2;
+				break;
+			case -2:
+				horizontalVelocity = -3;
+				break;
+			case -3:
+				horizontalVelocity = -3;
+				break;
 			}
-			positionX = getX() + direction;
 		}
+
+		// right
 		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
-			if (getX() >= 175) {
-				direction = 0;
-			} else {
-				direction = 1;
+
+			switch (horizontalVelocity) {
+			case 3:
+				horizontalVelocity = 3;
+				break;
+			case 2:
+				horizontalVelocity = 3;
+				break;
+			case 1:
+				horizontalVelocity = 2;
+				break;
+			case 0:
+				horizontalVelocity = 1;
+				break;
+			case -1:
+				horizontalVelocity = 0;
+				break;
+			case -2:
+				horizontalVelocity = -1;
+				break;
+			case -3:
+				horizontalVelocity = -2;
+				break;
 			}
-			positionX = getX() + direction;
 		}
-		
+
+		// up
 		if (dpadCode == 0) {
-			
-			// down
-			if(speedDown > 0) {
-				if(fallSpeed != 10) {
-					fallSpeed++;
-				}
-				
-				if(fallSpeed == 10) {
-					speedDown = 0;
-				}
-				
-			}
-			
-			// stay
-			else if (speedDown == 0) {
-				speedDown = -1;
-			}
-			
-			// up
-			else {
-				if(fallSpeed >= 5) {
-					fallSpeed--;
-				}
+			if (powerLevel <= MAX_POWER_LEVELS) {
+				acceleration -= accelerationFactor;
+				powerLevel += 1; // Beschleunigung um 1 erhöht
 			}
 		}
-	}
 
-	public void accelerateUp(int dpadCode) {
-		if (dpadCode == 0) {
-			positionY = (int) (getY() - direction - speedDown);
-			System.out.println("Schnelligkeit: " + speedDown);
-			speedDown = speedDown - 0.1;
+		// down
+		if (dpadCode == 4) {
+			if (powerLevel >= 0) {
+				acceleration += accelerationFactor;
+				powerLevel -= 1; // Beschleunigung um 1 gesenkt
+			}
 		}
-	}
-
-	private void checkPositionOutOfGrid() {
-		if (getY() >= 98) {
-		}
-	}
-
-	public void stop() {
-		direction = 0;
 	}
 }
