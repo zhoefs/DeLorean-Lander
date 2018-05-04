@@ -7,22 +7,24 @@ import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 public class XboxControllerAdap extends XboxControllerAdapter {
 	private DeLoreanLander deLoreanLander;
 	private DeLoreanView deLoreanView;
+	
+	private boolean onHold = false;
 
 	public XboxControllerAdap(DeLoreanLander deLoreanLander, DeLoreanView deLoreanView) {
 		super();
-
 		this.deLoreanLander = deLoreanLander;
 		this.deLoreanView = deLoreanView;
 	}
 
 	public void dpad(int direction, boolean pressed) {
-        System.out.println(direction + " " + pressed);
 		if (pressed) {
-			this.deLoreanLander.accelerate(direction);
+			if(!onHold) {
+				onHold = true;
+				this.deLoreanLander.accelerate(direction);
+			}
 		} else {
-			this.deLoreanLander.stop();
+			onHold = false;
 		}
-
 	}
 
 	public void back(boolean pressed) {
