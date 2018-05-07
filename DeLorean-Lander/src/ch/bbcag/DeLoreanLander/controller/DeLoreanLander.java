@@ -1,5 +1,7 @@
 package ch.bbcag.DeLoreanLander.controller;
 
+import java.awt.event.KeyEvent;
+
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.Location;
@@ -16,8 +18,9 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	private double xPos = 90;
 	private double yPos = 10;
-
-	// private final Actor thrust = new Actor("resources/sprites/thrust.png", 9);
+	private double remainFuel;
+	private double fuelFactor = 0.5;
+	private final Actor thrust = new Actor("resources/sprites/thrust.png", 9);
 
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
@@ -46,6 +49,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			powerLevel = 0;
 			velocity = 0;
 		}
+		
 
 		// horizontal
 		xPos = xPos + horizontalVelocity;
@@ -55,19 +59,20 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		}
 
 		setLocation(new Location((int) xPos, (int) yPos));
-			horizontalVelocity = 0;
+		thrust.setLocation(new Location((int) xPos, (int) yPos));
+		horizontalVelocity = 0;
+		remainFuel = remainFuel - powerLevel * fuelFactor;
 	}
 
 	public void accelerate(int dpadCode) {
 		final double accelerationFactor = 2 * MAX_ACCELERATION / MAX_POWER_LEVELS;
 
-		
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
-				horizontalVelocity = -3;
+			horizontalVelocity = -3;
 		}
-		
+
 		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
-				horizontalVelocity = 3;
+			horizontalVelocity = 3;
 		}
 
 		// up
@@ -75,6 +80,12 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			if (powerLevel <= MAX_POWER_LEVELS) {
 				acceleration -= accelerationFactor;
 				powerLevel += 1; // Beschleunigung um 1 erhöht
+			}
+			if (acceleration == MAX_ACCELERATION) {
+				setThrust(0);
+
+			} else {
+				setThrust(powerLevel);
 			}
 		}
 
@@ -85,5 +96,16 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 				powerLevel -= 1; // Beschleunigung um 1 gesenkt
 			}
 		}
+	}
+	
+
+	private void setThrust(int i) {
+		if (i < 0) {
+			i = 0;
+		}
+		if (i > 8) {
+			i = 8;
+		}
+		thrust.show(i);
 	}
 }
