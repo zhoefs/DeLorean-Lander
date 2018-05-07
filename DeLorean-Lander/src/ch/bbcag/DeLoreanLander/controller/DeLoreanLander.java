@@ -40,7 +40,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	public void act() {
 
 		// vertical
-		final double dt = 2 * gameGrid.getSimulationPeriod() / 1000.0; // Time scaled: * 2
+		final double dt = 2 * gameGrid.getSimulationPeriod() / 2000.0; // Time scaled: * 2
 		velocity = velocity + acceleration * dt;
 		yPos = yPos + velocity * dt;
 
@@ -49,7 +49,6 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			powerLevel = 0;
 			velocity = 0;
 		}
-		
 
 		// horizontal
 		xPos = xPos + horizontalVelocity;
@@ -59,18 +58,20 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		}
 
 		setLocation(new Location((int) xPos, (int) yPos));
-		thrust.setLocation(new Location((int) xPos, (int) yPos));
+		thrust.setLocation(new Location((int) xPos, (int) yPos + 70));
 		horizontalVelocity = 0;
 		remainFuel = remainFuel - powerLevel * fuelFactor;
 	}
 
 	public void accelerate(int dpadCode) {
 		final double accelerationFactor = 2 * MAX_ACCELERATION / MAX_POWER_LEVELS;
-
+		
+		// left
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
 			horizontalVelocity = -3;
 		}
-
+		
+		// right
 		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
 			horizontalVelocity = 3;
 		}
@@ -79,13 +80,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		if (dpadCode == 0) {
 			if (powerLevel <= MAX_POWER_LEVELS) {
 				acceleration -= accelerationFactor;
-				powerLevel += 1; // Beschleunigung um 1 erhöht
-			}
-			if (acceleration == MAX_ACCELERATION) {
-				setThrust(0);
-
-			} else {
-				setThrust(powerLevel);
+				powerLevel += 1;
 			}
 		}
 
@@ -93,11 +88,16 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		if (dpadCode == 4) {
 			if (powerLevel >= 0) {
 				acceleration += accelerationFactor;
-				powerLevel -= 1; // Beschleunigung um 1 gesenkt
+				powerLevel -= 1; 
 			}
 		}
+		if (acceleration == MAX_ACCELERATION) {
+			setThrust(0);
+
+		} else {
+			setThrust(powerLevel);
+		}
 	}
-	
 
 	private void setThrust(int i) {
 		if (i < 0) {
