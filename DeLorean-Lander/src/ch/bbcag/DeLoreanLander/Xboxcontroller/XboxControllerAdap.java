@@ -38,8 +38,4 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 			deLoreanView.gameStart();
 		}
 	}
-
-	public void rightTrigger(double value) {
-		System.out.println("rightTrigger value:" + value);
-	}
 }
