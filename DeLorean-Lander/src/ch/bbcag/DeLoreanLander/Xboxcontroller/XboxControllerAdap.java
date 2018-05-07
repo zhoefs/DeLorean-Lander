@@ -16,7 +16,7 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 		this.deLoreanView = deLoreanView;
 	}
 
-	public void dpad(int direction,   boolean pressed) {
+	public void dpad(int direction, boolean pressed) {
 		if (pressed) {
 			if(!onHold) {
 				onHold = true;

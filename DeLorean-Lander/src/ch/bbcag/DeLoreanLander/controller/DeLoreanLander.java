@@ -29,6 +29,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	@Override
 	public int collide(Actor deLorean, Actor landingBase) {
 		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+		thrust.hide();
 		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
 		deLorean.hide();
 		setActEnabled(false);
