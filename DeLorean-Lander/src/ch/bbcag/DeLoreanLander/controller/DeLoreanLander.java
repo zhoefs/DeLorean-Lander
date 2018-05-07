@@ -55,65 +55,19 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		}
 
 		setLocation(new Location((int) xPos, (int) yPos));
+			horizontalVelocity = 0;
 	}
 
 	public void accelerate(int dpadCode) {
 		final double accelerationFactor = 2 * MAX_ACCELERATION / MAX_POWER_LEVELS;
 
-		// left
+		
 		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
-
-			switch (horizontalVelocity) {
-			case 3:
-				horizontalVelocity = 2;
-				break;
-			case 2:
-				horizontalVelocity = 1;
-				break;
-			case 1:
-				horizontalVelocity = 0;
-				break;
-			case 0:
-				horizontalVelocity = -1;
-				break;
-			case -1:
-				horizontalVelocity = -2;
-				break;
-			case -2:
 				horizontalVelocity = -3;
-				break;
-			case -3:
-				horizontalVelocity = -3;
-				break;
-			}
 		}
-
-		// right
+		
 		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
-
-			switch (horizontalVelocity) {
-			case 3:
 				horizontalVelocity = 3;
-				break;
-			case 2:
-				horizontalVelocity = 3;
-				break;
-			case 1:
-				horizontalVelocity = 2;
-				break;
-			case 0:
-				horizontalVelocity = 1;
-				break;
-			case -1:
-				horizontalVelocity = 0;
-				break;
-			case -2:
-				horizontalVelocity = -1;
-				break;
-			case -3:
-				horizontalVelocity = -2;
-				break;
-			}
 		}
 
 		// up
