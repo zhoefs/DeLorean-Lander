@@ -66,7 +66,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.doPause();
 			
 			gameGrid.addActor(
-					new TextActor("You crashed!", Color.BLACK, null, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
+					new TextActor("You crashed!", Color.BLACK, Color.WHITE	, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
 					new Location(500, 200));
 
 			velocity = 0d;
