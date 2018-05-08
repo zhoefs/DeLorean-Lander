@@ -58,6 +58,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			fuelExpired = false;
 
 		} else {
+			deLorean.hide();
 			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
 			thrust.hide();
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
@@ -91,7 +92,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		String s;
 		if (fuelExpired) {
-			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg Expired!", velocity,
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
 					acceleration, remainFuel);
 		} else {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
