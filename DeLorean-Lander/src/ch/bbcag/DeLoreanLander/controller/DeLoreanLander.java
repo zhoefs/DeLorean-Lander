@@ -38,12 +38,13 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	@Override
 	public int collide(Actor deLorean, Actor landingBase) {
-		if (velocity <= 50) {
+		if (velocity <= 10) {
 			gameGrid.doPause();
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
-			gameGrid.addActor(/* button1, new Location (1000,800) */new TextActor("White", Color.WHITE, Color.BLACK,
-					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(200, 200));
+			gameGrid.addActor(
+					new TextActor("White", Color.WHITE, Color.BLACK, new Font(Font.SANS_SERIF, Font.BOLD, 24)),
+					new Location(200, 200));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -57,14 +58,15 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			fuelExpired = false;
 
 		} else {
-			deLorean.hide();
 			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+			thrust.hide();
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
-			
+
 			gameGrid.doPause();
 			
-			gameGrid.addActor(/* button1, new Location (1000,800) */new TextActor("You crashed!", Color.WHITE, Color.BLACK,
-					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(200, 200));
+			gameGrid.addActor(
+					new TextActor("You crashed!", Color.BLACK, null, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
+					new Location(500, 200));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -76,9 +78,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			yPos = 100;
 			remainFuel = 2000;
 			fuelExpired = false;
-			
-			
-			
+
 		}
 		return 0;
 
@@ -91,7 +91,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		String s;
 		if (fuelExpired) {
-			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg Expired!", velocity,
 					acceleration, remainFuel);
 		} else {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
@@ -115,7 +115,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			horizontalVelocity = 0;
 		}
 		setLocation(new Location((int) xPos, (int) yPos));
-        
+
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
 		horizontalVelocity = 0;
 
