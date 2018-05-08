@@ -16,8 +16,9 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	private double xPos = 900;
 	private double yPos = 100;
-	private double remainFuel;
+	private double remainFuel = 2000;
 	private double fuelFactor = 0.5;
+	private boolean fuelExpired;
 
 	private Actor thrust = null;
 
@@ -41,8 +42,19 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;
+		
+		String s;
+		if (fuelExpired) {
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg",
+					velocity, acceleration, remainFuel);
+		} else {
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
+					acceleration, remainFuel);
+		}
+		gameGrid.setTitle(s);
 		velocity = velocity + acceleration * dt;
 		yPos = yPos + velocity * dt;
+		remainFuel = remainFuel - powerLevel * fuelFactor;
 
 		if (yPos <= 50) {
 			acceleration = MAX_ACCELERATION;
@@ -60,7 +72,14 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
 		horizontalVelocity = 0;
-		remainFuel = remainFuel - powerLevel * fuelFactor;
+		
+		if (remainFuel <= 0) {
+			remainFuel = 0;
+			powerLevel = 0;
+			acceleration = MAX_ACCELERATION;
+			fuelExpired = true;
+		}
+
 	}
 
 	public void accelerate(int dpadCode) {
