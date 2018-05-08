@@ -1,12 +1,20 @@
 package ch.bbcag.DeLoreanLander.controller;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
 import ch.aplu.jgamegrid.Location;
+import ch.aplu.jgamegrid.TextActor;
 
 public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private static final double MAX_ACCELERATION = 1.6;
 	private static final int MAX_POWER_LEVELS = 8;
+
+	// private Actor button1 = new Actor("resources/sprites/thrust.png");
+	// private GGButton button2 = new
+	// GGButton(resources/sprites/explosion_icon.png);
 
 	private double velocity = 0d;
 	private double acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -16,32 +24,63 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	private double xPos = 900;
 	private double yPos = 100;
-	private double remainFuel = 2000;
-	private double fuelFactor = 0.5;
-	private boolean fuelExpired;
+	private double remainFuel = 2000.0d;
+	private static final double FUEL_FACTOR = 0.5d;
+	private boolean fuelExpired = false;
 
 	private Actor thrust = null;
 
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
 		addActorCollisionListener(this);
+		thrust = new Actor("resources/sprites/thrust.png", 9);
 	}
 
 	@Override
 	public int collide(Actor deLorean, Actor landingBase) {
-		if (velocity <= 10) {
+		if (velocity <= 50) {
+			gameGrid.doPause();
 			gameGrid.removeAllActors();
-			gameGrid.getBg().clear(java.awt.Color.red);
-			gameGrid.setBgImagePath("");
-		} else {
-			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
-			thrust.hide();
-			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
-			deLorean.hide();
-			setActEnabled(false);
+			gameGrid.setBgImagePath(null);
+			gameGrid.addActor(/* button1, new Location (1000,800) */new TextActor("White", Color.WHITE, Color.BLACK,
+					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(200, 200));
+
+			velocity = 0d;
+			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
 			powerLevel = 0;
+
+			horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+
+			xPos = 900;
+			yPos = 100;
+			remainFuel = 2000;
+			fuelExpired = false;
+
+		} else {
+			deLorean.hide();
+			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
+			
+			gameGrid.doPause();
+			
+			gameGrid.addActor(/* button1, new Location (1000,800) */new TextActor("You crashed!", Color.WHITE, Color.BLACK,
+					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(200, 200));
+
+			velocity = 0d;
+			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+			powerLevel = 0;
+
+			horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+
+			xPos = 900;
+			yPos = 100;
+			remainFuel = 2000;
+			fuelExpired = false;
+			
+			
+			
 		}
-		return super.collide(deLorean, landingBase);
+		return 0;
 
 	}
 
@@ -61,7 +100,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		gameGrid.setTitle(s);
 		velocity = velocity + acceleration * dt;
 		yPos = yPos + velocity * dt;
-		remainFuel = remainFuel - powerLevel * fuelFactor;
+		remainFuel = remainFuel - powerLevel * FUEL_FACTOR;
 
 		if (yPos <= 50) {
 			acceleration = MAX_ACCELERATION;
@@ -76,7 +115,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			horizontalVelocity = 0;
 		}
 		setLocation(new Location((int) xPos, (int) yPos));
-
+        
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
 		horizontalVelocity = 0;
 
@@ -105,7 +144,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		// up
 		if (dpadCode == 0) {
-			if (powerLevel <= MAX_POWER_LEVELS) {
+			if (powerLevel < MAX_POWER_LEVELS) {
 				acceleration -= accelerationFactor;
 				powerLevel += 1;
 				getThrust().show(powerLevel);
@@ -114,7 +153,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 		// down
 		if (dpadCode == 4) {
-			if (powerLevel >= 0) {
+			if (powerLevel > 0) {
 				acceleration += accelerationFactor;
 				powerLevel -= 1;
 				getThrust().show(powerLevel);
@@ -122,15 +161,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		}
 	}
 
-	private Actor getThrust() {
-		if (thrust == null) {
-			setThrust(new Actor("resources/sprites/thrust.png", 9));
-		}
+	public Actor getThrust() {
 		return thrust;
-	}
-
-	private void setThrust(Actor thrust) {
-		this.thrust = thrust;
-		gameGrid.addActor(thrust, new Location((int) xPos, (int) yPos + 40));
 	}
 }
