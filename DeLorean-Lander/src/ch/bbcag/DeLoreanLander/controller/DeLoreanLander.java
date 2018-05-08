@@ -78,6 +78,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			powerLevel = 0;
 			acceleration = MAX_ACCELERATION;
 			fuelExpired = true;
+			thrust.hide();
 		}
 
 	}
