@@ -29,18 +29,20 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	@Override
 	public int collide(Actor deLorean, Actor landingBase) {
-		if (velocity <=10) {
-			deLorean.show();
+		if (velocity <= 10) {
+			gameGrid.removeAllActors();
+			gameGrid.getBg().clear(java.awt.Color.red);
+			gameGrid.setBgImagePath("");
 		} else {
-		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
-		thrust.hide();
-		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
-		deLorean.hide();
-		setActEnabled(false);
-		powerLevel = 0;
+			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+			thrust.hide();
+			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
+			deLorean.hide();
+			setActEnabled(false);
+			powerLevel = 0;
 		}
 		return super.collide(deLorean, landingBase);
-		
+
 	}
 
 	public void act() {
@@ -85,7 +87,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			fuelExpired = true;
 			thrust.hide();
 		}
-			}
+	}
 
 	public void accelerate(int dpadCode) {
 
