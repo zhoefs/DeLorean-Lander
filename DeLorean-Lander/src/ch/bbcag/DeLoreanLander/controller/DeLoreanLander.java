@@ -48,6 +48,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.doPause();
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
+			gameGrid.setTitle(null);
 			gameGrid.addActor(landedCar, new Location(860, 200));
 			gameGrid.addActor(firework, new Location(900, 800));
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
@@ -74,7 +75,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 			gameGrid.doPause();
 			gameGrid.addActor(crashedCar, new Location(860, 200));
-			gameGrid.addActor(restart, new Location(850, 350));
+			gameGrid.addActor(restart, new Location(870, 350));
 
 //			 gameGrid.addActor(
 //			 new TextActor("Press START to Restart or BACK to Leave",
