@@ -19,9 +19,11 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private double velocity = 0d;
 	private double acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
 	private int powerLevel = 0;
+	
+	// Actors
 	private Actor crashedCar = new Actor("resources/sprites/you_crashed.png");
 	private Actor landedCar = new Actor("resources/sprites/you_won.png");
-	private Actor firework = new Actor("resources/sprites/firework.gif");
+	private FireworkActor firework = new FireworkActor("resources/sprites/firework.jpg", 46);
 
 	private int horizontalVelocity = 0; // -1: left, 0: stay, 1: right
 
@@ -45,11 +47,12 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.doPause();
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
-			gameGrid.addActor(landedCar, new Location(860,200));
-			gameGrid.addActor(firework, new Location(200,800));
-//			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
-//					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 700));
-//			
+			gameGrid.addActor(landedCar, new Location(860, 200));
+			gameGrid.addActor(firework, new Location(900, 800));
+			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
+					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
+			gameGrid.doRun();
+			//
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -69,11 +72,12 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
 
 			gameGrid.doPause();
-			gameGrid.addActor(crashedCar, new Location(860,200));
+			gameGrid.addActor(crashedCar, new Location(860, 200));
 
-//			gameGrid.addActor(
-//					new TextActor("You crashed! Press START to Restart or BACK to Leave", Color.BLACK, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
-//					new Location(500, 200));
+			 gameGrid.addActor(
+			 new TextActor("Press START to Restart or BACK to Leave",
+			 Color.BLACK, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 20)),
+			 new Location(500, 350));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
