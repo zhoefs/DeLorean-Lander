@@ -23,6 +23,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	// Actors
 	private Actor crashedCar = new Actor("resources/sprites/you_crashed.png");
 	private Actor landedCar = new Actor("resources/sprites/you_won.png");
+	private Actor restart = new Actor("resources/sprites/restart.png");
 	private FireworkActor firework = new FireworkActor("resources/sprites/firework.jpg", 46);
 
 	private int horizontalVelocity = 0; // -1: left, 0: stay, 1: right
@@ -73,11 +74,12 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 			gameGrid.doPause();
 			gameGrid.addActor(crashedCar, new Location(860, 200));
+			gameGrid.addActor(restart, new Location(850, 350));
 
-			 gameGrid.addActor(
-			 new TextActor("Press START to Restart or BACK to Leave",
-			 Color.BLACK, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 20)),
-			 new Location(500, 350));
+//			 gameGrid.addActor(
+//			 new TextActor("Press START to Restart or BACK to Leave",
+//			 Color.BLACK, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 20)),
+//			 new Location(500, 350));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
