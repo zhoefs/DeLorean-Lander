@@ -7,7 +7,7 @@ import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 public class XboxControllerAdap extends XboxControllerAdapter {
 	private DeLoreanLander deLoreanLander;
 	private DeLoreanView deLoreanView;
-	
+
 	private boolean onHold = false;
 
 	public XboxControllerAdap(DeLoreanLander deLoreanLander, DeLoreanView deLoreanView) {
@@ -18,7 +18,7 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 
 	public void dpad(int direction, boolean pressed) {
 		if (pressed) {
-			if(!onHold) {
+			if (!onHold) {
 				onHold = true;
 				this.deLoreanLander.accelerate(direction);
 			}

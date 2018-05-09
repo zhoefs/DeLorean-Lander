@@ -1,9 +1,10 @@
 package ch.bbcag.DeLoreanLander.Xboxcontroller;
 
 import javax.swing.JOptionPane;
-import ch.aplu.xboxcontroller.*;
+
+import ch.aplu.xboxcontroller.XboxController;
 import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
-import ch.bbcag.DeLoreanLander.view.*;
+import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 
 public class XboxControllerListener {
 
@@ -19,7 +20,6 @@ public class XboxControllerListener {
 			System.exit(0);
 			return;
 		}
-
 		xc.addXboxControllerListener(new XboxControllerAdap(deLoreanLander, deLoreanView));
 	}
 }
