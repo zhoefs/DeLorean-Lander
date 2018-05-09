@@ -19,6 +19,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private double velocity = 0d;
 	private double acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
 	private int powerLevel = 0;
+	private Actor crashedCar = new Actor("resources/sprites/you_Crashed.png");
 
 	private int horizontalVelocity = 0; // -1: left, 0: stay, 1: right
 
@@ -42,9 +43,9 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.doPause();
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
-			gameGrid.addActor(
-					new TextActor("White", Color.WHITE, Color.BLACK, new Font(Font.SANS_SERIF, Font.BOLD, 24)),
-					new Location(200, 200));
+			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
+					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 700));
+			
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -64,10 +65,11 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
 
 			gameGrid.doPause();
-			
-			gameGrid.addActor(
-					new TextActor("You crashed!", Color.BLACK, Color.WHITE	, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
-					new Location(500, 200));
+			gameGrid.addActor(crashedCar, new Location(860,200));
+
+//			gameGrid.addActor(
+//					new TextActor("You crashed! Press START to Restart or BACK to Leave", Color.BLACK, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 35)),
+//					new Location(500, 200));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
