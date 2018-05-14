@@ -16,16 +16,14 @@ public class DeLoreanView extends GameGrid {
 	private Actor firstLandingField = null;
 	private Actor secondLandingField = null;
 	private Actor thirdLandingField = null;
-//	private Actor redLine = null;
 
 	public DeLoreanView() {
-		super(1800, 1000, 1, null, "resources/sprites/western_background.png", false);
+		super(1800, 1000, 1, null, "resources/sprites/western_background_redline.png", false);
 		setSimulationPeriod(50);
 
-//		addActor(getRedLine(), new Location(600,100));
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
-		addActor(getFirstLandingField(), new Location(300, 400));
+		addActor(getFirstLandingField(), new Location(275, 385));
 		addActor(getSecondLandingField(), new Location(800, 950));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
@@ -39,7 +37,7 @@ public class DeLoreanView extends GameGrid {
 
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
-		addActor(getFirstLandingField(), new Location(300, 400));
+		addActor(getFirstLandingField(), new Location(275, 385));
 		addActor(getSecondLandingField(), new Location(800, 950));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
@@ -102,15 +100,4 @@ public class DeLoreanView extends GameGrid {
 	private void setFirstLandingField(Actor firstLandingField) {
 		this.firstLandingField = firstLandingField;
 	}
-
-//	private Actor getRedLine() {
-//		if (redLine == null) {
-//			setRedLine(new Actor("resources/sprites/redline.jpg"));
-//		}
-//		return redLine;
-//	}
-//
-//	private void setRedLine(Actor redLine) {
-//		this.redLine = redLine;
-//	}
 }
