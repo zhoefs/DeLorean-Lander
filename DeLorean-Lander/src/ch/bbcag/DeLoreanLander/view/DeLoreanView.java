@@ -33,7 +33,7 @@ public class DeLoreanView extends GameGrid {
 
 	public void gameStart() {
 		removeAllActors();
-		setBgImagePath("resources/sprites/western_background.png");
+		setBgImagePath("resources/sprites/western_background_redline.png");
 
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
