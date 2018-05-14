@@ -13,5 +13,4 @@ public class FireworkActor extends Actor {
 		showNextSprite();
 		super.act();
 	}
-
 }

@@ -2,6 +2,7 @@ package ch.bbcag.DeLoreanLander.controller;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
@@ -30,6 +31,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private double yPos = 100;
 	private double remainFuel = 2000.0d;
 	private boolean fuelExpired = false;
+	private int score;
 
 	public DeLoreanLander() {
 		super("resources/sprites/lorean_car.png");
@@ -48,6 +50,8 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(firework, new Location(900, 800));
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
+			score = (int) (remainFuel * 5 + velocity);
+			gameGrid.getBg().drawText("You've reached " + score + " " + "Points", new Point(700, 500));
 			gameGrid.doRun();
 
 			velocity = 0d;
