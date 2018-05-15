@@ -53,6 +53,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 				"resources/sprites/western_background_redline_checkpoints.png", false);
 		setSimulationPeriod(50);
 
+		// Adding the actors to the Grid
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
 		addActor(getFirstLandingField(), new Location(275, 385));
@@ -87,7 +88,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	private void showCellNumbers() {
 		for (int i = 0; i < 1800; i++) {
 			for (int j = 0; j < 1000; j++) {
-				if (Color.GREEN.equals(getBg().getColor(new Point(i, j)))) {
+				if (Color.RED.equals(getBg().getColor(new Point(i, j)))) {
 					System.out.println(getBg().getColor(new Point(i, j)) + ": " + i + "," + j);
 				}
 			}

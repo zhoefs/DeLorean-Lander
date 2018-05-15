@@ -89,34 +89,36 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		return 0;
 	}
 
-	public int collideWithBorder(Actor deLorean, Actor checkpoint) {
-		deLorean.hide();
-		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
-		thrust.hide();
-		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
-		gameGrid.doPause();
-		gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses
-		gameGrid.addActor(restart, new Location(870, 350));
-
-		velocity = 0d;
-		acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
-		powerLevel = 0;
-		horizontalVelocity = 0; // -1: left, 0: stay, 1: right
-
-		xPos = 900;
-		yPos = 100;
-		remainFuel = 2000;
-		fuelExpired = false;
-
-		return 0;
-
-	}
+	// Collide Methode für die einzelnen roten Punkte (Pixel)
+	// public int collideWithBorder(Actor deLorean, Actor checkpoint) {
+	// deLorean.hide();
+	// final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+	// thrust.hide();
+	// gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() -
+	// 20));
+	// gameGrid.doPause();
+	// gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player
+	// loses
+	// gameGrid.addActor(restart, new Location(870, 350));
+	//
+	// velocity = 0d;
+	// acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+	// powerLevel = 0;
+	// horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+	//
+	// xPos = 900;
+	// yPos = 100;
+	// remainFuel = 2000;
+	// fuelExpired = false;
+	//
+	// return 0;
+	//
+	// }
 
 	public void act() {
 
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;
-
 		String s;
 		if (fuelExpired) {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
