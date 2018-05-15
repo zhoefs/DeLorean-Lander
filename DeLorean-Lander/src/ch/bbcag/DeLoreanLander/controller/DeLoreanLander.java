@@ -47,7 +47,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
 			gameGrid.setTitle(null);
-			gameGrid.addActor(landedCar, new Location(860, 200)); // Text, if the player wins 
+			gameGrid.addActor(landedCar, new Location(860, 200)); // Text, if the player wins
 			gameGrid.addActor(firework, new Location(900, 800));
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
@@ -65,7 +65,6 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			yPos = 100;
 			remainFuel = 2000;
 			fuelExpired = false;
-		
 
 		} else {
 			deLorean.hide();
@@ -73,8 +72,8 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			thrust.hide();
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
 			gameGrid.doPause();
-			gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses 
-			gameGrid.addActor(restart, new Location(870, 350)); 
+			gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses
+			gameGrid.addActor(restart, new Location(870, 350));
 
 			velocity = 0d;
 			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
@@ -90,9 +89,30 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		return 0;
 	}
 
+	public int collideWithBorder(Actor deLorean, Actor checkpoint) {
+		deLorean.hide();
+		final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+		thrust.hide();
+		gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
+		gameGrid.doPause();
+		gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses
+		gameGrid.addActor(restart, new Location(870, 350));
+
+		velocity = 0d;
+		acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+		powerLevel = 0;
+		horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+
+		xPos = 900;
+		yPos = 100;
+		remainFuel = 2000;
+		fuelExpired = false;
+
+		return 0;
+
+	}
+
 	public void act() {
-		
-		
 
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;

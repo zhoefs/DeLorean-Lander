@@ -24,8 +24,8 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	private Actor firstLandingField = null;
 	private Actor secondLandingField = null;
 	private Actor thirdLandingField = null;
-	
-	// Red Pixels
+
+	// Red Pixels Actors
 	private Actor checkpoint_1 = null;
 	private Actor checkpoint_2 = null;
 	private Actor checkpoint_3 = null;
@@ -94,10 +94,6 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 		}
 	}
 
-	/**
-	 * Used in debug mode only. It writes all selected locations to the console to
-	 * use them in {@link LocationsSaloonBackground}.
-	 */
 	public void buttonChecked(GGCheckButton arg0, boolean arg1) {
 		System.out.print("new Location(" + arg0.getLocation().x + "," + arg0.getLocation().y + "), ");
 	}
@@ -121,7 +117,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 		addActor(getCheckpoint_6(), new Location(399, 437));
 		addActor(getCheckpoint_7(), new Location(416, 550));
 		addActor(getCheckpoint_8(), new Location(431, 468));
-		addActor(getCheckpoint_9(),new Location(509, 770));
+		addActor(getCheckpoint_9(), new Location(509, 770));
 		addActor(getCheckpoint_10(), new Location(602, 903));
 		addActor(getCheckpoint_11(), new Location(748, 976));
 		addActor(getCheckpoint_12(), new Location(1077, 854));
