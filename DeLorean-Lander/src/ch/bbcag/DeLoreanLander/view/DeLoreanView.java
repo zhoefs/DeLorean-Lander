@@ -62,15 +62,15 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 		setBgImagePath("resources/sprites/western_background_redline.png");
 		showCellNumbers();
 
-//		addActor(getLorean(), new Location(900, 100));
-//		addActor(getLorean().getThrust(), new Location(900, 140));
-//		addActor(getFirstLandingField(), new Location(275, 385));
-//		addActor(getSecondLandingField(), new Location(800, 950));
-//		addActor(getThirdLandingField(), new Location(1470, 770));
-//
-//		getLorean().addCollisionActor(getFirstLandingField());
-//		getLorean().addCollisionActor(getSecondLandingField());
-//		getLorean().addCollisionActor(getThirdLandingField());
+		addActor(getLorean(), new Location(900, 100));
+		addActor(getLorean().getThrust(), new Location(900, 140));
+		addActor(getFirstLandingField(), new Location(275, 385));
+		addActor(getSecondLandingField(), new Location(800, 950));
+		addActor(getThirdLandingField(), new Location(1470, 770));
+
+		getLorean().addCollisionActor(getFirstLandingField());
+		getLorean().addCollisionActor(getSecondLandingField());
+		getLorean().addCollisionActor(getThirdLandingField());
 
 		refresh();
 		doRun();
