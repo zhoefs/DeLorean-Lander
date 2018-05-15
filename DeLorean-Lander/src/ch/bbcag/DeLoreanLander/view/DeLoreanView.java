@@ -26,7 +26,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	private Actor thirdLandingField = null;
 
 	public DeLoreanView() {
-		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/western_background_redline.png", false);
+		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/western_background_redline_checkpoints.png", false);
 		setSimulationPeriod(50);
 
 		addActor(getLorean(), new Location(900, 100));
@@ -40,9 +40,9 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	}
 
 	private void showCellNumbers() {
-		for (int i = 0; i < 500; i++) {
-			for (int j = 0; j < 200; j++) {
-				if(Color.RED.equals(getBg().getColor(new Point(i,j)))) {
+		for (int i = 0; i < 1800; i++) {
+			for (int j = 0; j < 1000; j++) {
+				if(Color.GREEN.equals(getBg().getColor(new Point(i,j)))) {
 					System.out.println(getBg().getColor(new Point(i,j)) + ": " + i + "," + j);
 				}
 			}
@@ -59,18 +59,18 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	public void gameStart() {
 		removeAllActors();
  		
-		setBgImagePath("resources/sprites/western_background_redline.png");
+		setBgImagePath("resources/sprites/western_background_redline_checkpoints.png");
 		showCellNumbers();
 
-		addActor(getLorean(), new Location(900, 100));
-		addActor(getLorean().getThrust(), new Location(900, 140));
-		addActor(getFirstLandingField(), new Location(275, 385));
-		addActor(getSecondLandingField(), new Location(800, 950));
-		addActor(getThirdLandingField(), new Location(1470, 770));
-
-		getLorean().addCollisionActor(getFirstLandingField());
-		getLorean().addCollisionActor(getSecondLandingField());
-		getLorean().addCollisionActor(getThirdLandingField());
+//		addActor(getLorean(), new Location(900, 100));
+//		addActor(getLorean().getThrust(), new Location(900, 140));
+//		addActor(getFirstLandingField(), new Location(275, 385));
+//		addActor(getSecondLandingField(), new Location(800, 950));
+//		addActor(getThirdLandingField(), new Location(1470, 770));
+//
+//		getLorean().addCollisionActor(getFirstLandingField());
+//		getLorean().addCollisionActor(getSecondLandingField());
+//		getLorean().addCollisionActor(getThirdLandingField());
 
 		refresh();
 		doRun();
