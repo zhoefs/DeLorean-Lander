@@ -32,7 +32,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 		setSimulationPeriod(50);
 
 		// Adding the actors to the Grid
-		addActor(getBackgroundImage(),new Location(960, 50));
+		addActor(getBackgroundImage(),new Location(960, 540));
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
 		addActor(getFirstLandingField(), new Location(275, 385));
@@ -71,7 +71,7 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 
 	public Actor getBackgroundImage() {
 		if (backgroundImage == null) {
-			setBackgroundImage(new Actor("resources/sprites/western_background_redline_checkpoints.png"));
+			setBackgroundImage(new Actor("resources/sprites/backgroundImage.png"));
 		}
 		return backgroundImage;
 	}

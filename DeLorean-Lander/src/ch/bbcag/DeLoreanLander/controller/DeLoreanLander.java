@@ -17,7 +17,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private static final double FUEL_FACTOR = 0.5d;
 
 	// Actors
-	private Actor backgroundImage = new Actor("resources/sprites/western_background_redline_checkpoints.png");
+	private Actor backgroundImage = new Actor("resources/sprites/backgroundImage.png");
 	private Actor crashedCar = new Actor("resources/sprites/you_crashed.png");
 	private Actor landedCar = new Actor("resources/sprites/you_won.png");
 	private Actor restart = new Actor("resources/sprites/restart.png");
