@@ -29,7 +29,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 	private double xPos = 900;
 	private double yPos = 100;
-	private double remainFuel = 2000.0d;
+	private double remainFuel = 1000.0d;
 	private boolean fuelExpired = false;
 	private int score;
 
@@ -57,10 +57,9 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.doRun();
 
 			velocity = 0d;
-			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
-			powerLevel = 0;
+			acceleration = MAX_ACCELERATION;
 
-			horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+			horizontalVelocity = 0;
 
 			xPos = 900;
 			yPos = 100;
@@ -77,9 +76,9 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(restart, new Location(870, 350));
 
 			velocity = 0d;
-			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+			acceleration = MAX_ACCELERATION;
 			powerLevel = 0;
-			horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+			horizontalVelocity = 0;
 
 			xPos = 900;
 			yPos = 100;
@@ -98,24 +97,6 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		if (gameGrid.getBg().getColor(deLoreanFront).equals(Color.RED)
 				|| gameGrid.getBg().getColor(deLoreanBack).equals(Color.RED)) {
 			collide(this, new Actor());
-			// this.hide();
-			// final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
-			// thrust.hide();
-			// gameGrid.addActor(explosion, new Location(this.getX(), this.getY() - 20));
-			// gameGrid.doPause();
-			// gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player
-			// loses
-			// gameGrid.addActor(restart, new Location(870, 350));
-			//
-			// velocity = 0d;
-			// acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
-			// powerLevel = 0;
-			// horizontalVelocity = 0; // -1: left, 0: stay, 1: right
-			//
-			// xPos = 900;
-			// yPos = 100;
-			// remainFuel = 2000;
-			// fuelExpired = false;
 		}
 
 		// vertical
