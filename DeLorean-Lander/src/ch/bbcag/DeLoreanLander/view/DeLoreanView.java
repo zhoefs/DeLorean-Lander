@@ -23,7 +23,6 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 	private Actor secondLandingField = null;
 	private Actor thirdLandingField = null;
 
-
 	public DeLoreanView() {
 		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null,
 				"resources/sprites/Blueprint.png", false);
