@@ -17,7 +17,6 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	private static final double FUEL_FACTOR = 0.5d;
 
 	// Actors
-	private Actor backgroundImage = new Actor("resources/sprites/backgroundImage.png");
 	private Actor crashedCar = new Actor("resources/sprites/you_crashed.png");
 	private Actor landedCar = new Actor("resources/sprites/you_won.png");
 	private Actor restart = new Actor("resources/sprites/restart.png");
@@ -92,27 +91,33 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	}
 
 	public void act() {
-		
-		if (gameGrid.getBg().getColor(new Location((int)xPos, (int)yPos)).equals(Color.RED)) {
-			this.hide();
-			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
-			thrust.hide();
-			gameGrid.addActor(explosion, new Location(this.getX(), this.getY() - 20));
-			gameGrid.doPause();
-			gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses
-			gameGrid.addActor(restart, new Location(870, 350));
 
-			velocity = 0d;
-			acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
-			powerLevel = 0;
-			horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+		Location deLoreanFront = new Location(((int) xPos + 49), (int) yPos);
+		Location deLoreanBack = new Location(((int) xPos - 49), (int) yPos);
 
-			xPos = 900;
-			yPos = 100;
-			remainFuel = 2000;
-			fuelExpired = false;
+		if (gameGrid.getBg().getColor(deLoreanFront).equals(Color.RED)
+				|| gameGrid.getBg().getColor(deLoreanBack).equals(Color.RED)) {
+			collide(this, new Actor());
+			// this.hide();
+			// final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
+			// thrust.hide();
+			// gameGrid.addActor(explosion, new Location(this.getX(), this.getY() - 20));
+			// gameGrid.doPause();
+			// gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player
+			// loses
+			// gameGrid.addActor(restart, new Location(870, 350));
+			//
+			// velocity = 0d;
+			// acceleration = MAX_ACCELERATION; // Beschleunigung vom DeLorean
+			// powerLevel = 0;
+			// horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+			//
+			// xPos = 900;
+			// yPos = 100;
+			// remainFuel = 2000;
+			// fuelExpired = false;
 		}
-		
+
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;
 		String s;

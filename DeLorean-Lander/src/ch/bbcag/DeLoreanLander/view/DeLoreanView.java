@@ -1,7 +1,5 @@
 package ch.bbcag.DeLoreanLander.view;
 
-import java.awt.Point;
-
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGCheckButton;
 import ch.aplu.jgamegrid.GGCheckButtonListener;
@@ -55,8 +53,8 @@ public class DeLoreanView extends GameGrid implements GGCheckButtonListener {
 		addActor(getBackgroundImage(),new Location(960, 540));
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));
-		addActor(getFirstLandingField(), new Location(275, 385));
-		addActor(getSecondLandingField(), new Location(800, 950));
+		addActor(getFirstLandingField(), new Location(275, 390));
+		addActor(getSecondLandingField(), new Location(800, 965));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 		
 
