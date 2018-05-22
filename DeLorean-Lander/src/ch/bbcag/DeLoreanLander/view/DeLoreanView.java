@@ -20,15 +20,30 @@ public class DeLoreanView extends GameGrid {
 	private Actor firstLandingField = null;
 	private Actor secondLandingField = null;
 	private Actor thirdLandingField = null;
-
+	private Actor welcome = new Actor("resources/sprites/welcome.png");
+	private Actor buttonsToPlay = new Actor("resources/sprites/buttons_to_play.png");
+	private Actor pressStart = new Actor("resources/sprites/press_start.png");
+	private Actor pressBack = new Actor("resources/sprites/press_back.png");
+	private Actor upOrDown = new Actor("resources/sprites/up_or_down.png");
+	private Actor leftOrRight = new Actor("resources/sprites/left_or_right.png");
+	
 	public DeLoreanView() {
 		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/blueprint.png", false);
 		setSimulationPeriod(50);
 
 		// Adding the actors to the Grid
 		addActor(getBackgroundImage(), new Location(960, 540));
+		
+		addActor(welcome, new Location(860, 200)); // Welcome Text
+		addActor(buttonsToPlay, new Location(650, 350));
+		addActor(pressStart, new Location(830, 450));
+		addActor(pressBack, new Location(690, 500));
+		addActor(upOrDown, new Location(872, 600));
+		addActor(leftOrRight, new Location(898, 650));
+		
+		
 		addActor(getLorean(), new Location(900, 100));
-		addActor(getLorean().getThrust(), new Location(900, 140));
+		removeActor(lorean);
 		addActor(getFirstLandingField(), new Location(275, 390));
 		addActor(getSecondLandingField(), new Location(800, 965));
 		addActor(getThirdLandingField(), new Location(1470, 770));
