@@ -62,6 +62,7 @@ public class DeLoreanView extends GameGrid {
 
 		setBgImagePath("resources/sprites/blueprint.png");
 
+		
 		addActor(getBackgroundImage(), new Location(960, 540));
 		addActor(getLorean(), new Location(900, 100));
 		addActor(getLorean().getThrust(), new Location(900, 140));

@@ -3,6 +3,7 @@ package ch.bbcag.DeLoreanLander.controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.math.BigDecimal;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
@@ -46,7 +47,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			
 			long endTime = System.nanoTime();
 			long passedTime = endTime - TimeUtil.getStartTime();
-			passedTime = passedTime/1000000000;
+			passedTime = Math.round(passedTime *100000000) / 100000000;
 						
 			gameGrid.doPause();
 			thrust.hide();
