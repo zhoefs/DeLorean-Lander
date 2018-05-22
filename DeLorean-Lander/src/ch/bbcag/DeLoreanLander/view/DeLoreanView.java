@@ -22,7 +22,7 @@ public class DeLoreanView extends GameGrid {
 	private Actor thirdLandingField = null;
 
 	public DeLoreanView() {
-		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/Blueprint.png", false);
+		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/blueprint.png", false);
 		setSimulationPeriod(50);
 
 		// Adding the actors to the Grid
@@ -40,7 +40,7 @@ public class DeLoreanView extends GameGrid {
 	public void gameStart() {
 		removeAllActors();
 
-		setBgImagePath("resources/sprites/Blueprint.png");
+		setBgImagePath("resources/sprites/blueprint.png");
 
 		addActor(getBackgroundImage(), new Location(960, 540));
 		addActor(getLorean(), new Location(900, 100));
