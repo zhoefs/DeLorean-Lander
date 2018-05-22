@@ -6,6 +6,7 @@ import ch.aplu.jgamegrid.Location;
 import ch.bbcag.DeLoreanLander.Xboxcontroller.XboxControllerListener;
 import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
 import ch.bbcag.DeLoreanLander.controller.LandingBaseActor;
+import ch.bbcag.DeLoreanLander.controller.TimeUtil;
 
 public class DeLoreanView extends GameGrid {
 
@@ -53,6 +54,10 @@ public class DeLoreanView extends GameGrid {
 	}
 
 	public void gameStart() {
+		TimeUtil.start();
+		
+//		long startTime = System.nanoTime();
+//		removeAllActors();
 		removeAllActors();
 
 		setBgImagePath("resources/sprites/blueprint.png");
@@ -74,7 +79,7 @@ public class DeLoreanView extends GameGrid {
 
 	public Actor getBackgroundImage() {
 		if (backgroundImage == null) {
-			setBackgroundImage(new Actor("resources/sprites/backgroundImage.png"));
+			setBackgroundImage(new Actor("resources/sprites/backgroundImageWithClouds.png"));
 		}
 		return backgroundImage;
 	}

@@ -43,6 +43,11 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 	public int collide(Actor deLorean, Actor actor) {
 
 		if (actor instanceof LandingBaseActor && velocity <= 10) {
+			
+			long endTime = System.nanoTime();
+			long passedTime = endTime - TimeUtil.getStartTime();
+			passedTime = passedTime/1000000000;
+						
 			gameGrid.doPause();
 			thrust.hide();
 			gameGrid.removeAllActors();
@@ -52,7 +57,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(firework, new Location(900, 800));
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
-			score = (int) (remainFuel * 5 - velocity * 2);
+			score = (int) (remainFuel * 5 + passedTime);
 			gameGrid.getBg().drawText("You've reached " + score + " " + "Points", new Point(780, 500));
 			gameGrid.doRun();
 
