@@ -27,6 +27,7 @@ public class DeLoreanView extends GameGrid {
 	private Actor pressBack = new Actor("resources/sprites/press_back.png");
 	private Actor upOrDown = new Actor("resources/sprites/up_or_down.png");
 	private Actor leftOrRight = new Actor("resources/sprites/left_or_right.png");
+	private Actor hint = new Actor("resources/sprites/hint.png");
 	
 	public DeLoreanView() {
 		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/blueprint.png", false);
@@ -35,20 +36,21 @@ public class DeLoreanView extends GameGrid {
 		// Adding the actors to the Grid
 		addActor(getBackgroundImage(), new Location(960, 540));
 		
-		addActor(welcome, new Location(860, 200)); // Welcome Text
-		addActor(buttonsToPlay, new Location(650, 350));
-		addActor(pressStart, new Location(830, 450));
-		addActor(pressBack, new Location(690, 500));
-		addActor(upOrDown, new Location(872, 600));
-		addActor(leftOrRight, new Location(898, 650));
-		
-		
 		addActor(getLorean(), new Location(900, 100));
 		removeActor(lorean);
 		addActor(getFirstLandingField(), new Location(275, 390));
-		addActor(getSecondLandingField(), new Location(800, 965));
+		addActor(getSecondLandingField(), new Location(800, 970));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
+		
+		addActor(welcome, new Location(860, 200)); // Welcome Text
+		addActor(buttonsToPlay, new Location(650, 400));
+		addActor(pressStart, new Location(930, 500));
+		addActor(pressBack, new Location(790, 550));
+		addActor(upOrDown, new Location(972, 650));
+		addActor(leftOrRight, new Location(998, 700));
+		addActor(hint, new Location(950, 900));
+		
 		new XboxControllerListener(lorean, this);
 		show();
 	}
@@ -59,15 +61,14 @@ public class DeLoreanView extends GameGrid {
 //		long startTime = System.nanoTime();
 //		removeAllActors();
 		removeAllActors();
-
-		setBgImagePath("resources/sprites/blueprint.png");
-
+		
 		
 		addActor(getBackgroundImage(), new Location(960, 540));
 		addActor(getLorean(), new Location(900, 100));
+		getLorean().reset();
 		addActor(getLorean().getThrust(), new Location(900, 140));
 		addActor(getFirstLandingField(), new Location(275, 390));
-		addActor(getSecondLandingField(), new Location(800, 965));
+		addActor(getSecondLandingField(), new Location(800, 970));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
 		getLorean().addCollisionActor(getFirstLandingField());

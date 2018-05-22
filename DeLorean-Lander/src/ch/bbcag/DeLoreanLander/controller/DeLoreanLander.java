@@ -3,7 +3,6 @@ package ch.bbcag.DeLoreanLander.controller;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
-import java.math.BigDecimal;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GGActorCollisionListener;
@@ -39,6 +38,19 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		addActorCollisionListener(this);
 		thrust = new Actor("resources/sprites/thrust.png", 9);
 	}
+	
+	public void reset() {
+		
+		velocity = 0d;
+		acceleration = MAX_ACCELERATION;
+		powerLevel = 0;
+		horizontalVelocity = 0;
+		
+		xPos = 900;
+		yPos = 100;
+		remainFuel = 1000;
+		fuelExpired = false;
+	}
 
 	@Override
 	public int collide(Actor deLorean, Actor actor) {
@@ -60,39 +72,22 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
 			score = (int) (remainFuel * 5 + passedTime * 50);
 			if (score <= 0 ) {
-				score = 0;
+				score = 100;
 			}
 			gameGrid.getBg().drawText("You've reached " + score + " " + "Points", new Point(780, 500));
 			gameGrid.doRun();
 
-			velocity = 0d;
-			acceleration = MAX_ACCELERATION;
-			powerLevel = 0;
-			horizontalVelocity = 0;
-
-			xPos = 900;
-			yPos = 100;
-			remainFuel = 1000;
-			fuelExpired = false;
+			reset();
 
 		} else {
 			deLorean.hide();
 			final Actor explosion = new Actor("resources/sprites/explosion_icon.png");
 			thrust.hide();
 			gameGrid.addActor(explosion, new Location(deLorean.getX(), deLorean.getY() - 20));
-			gameGrid.doPause();
 			gameGrid.addActor(crashedCar, new Location(860, 200)); // Text, if the player loses
 			gameGrid.addActor(restart, new Location(870, 350));
 
-			velocity = 0d;
-			acceleration = MAX_ACCELERATION;
-			powerLevel = 0;
-			horizontalVelocity = 0;
-
-			xPos = 900;
-			yPos = 100;
-			remainFuel = 1000;
-			fuelExpired = false;
+			reset();
 		}
 
 		return 0;
@@ -124,17 +119,16 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 		remainFuel = remainFuel - powerLevel * FUEL_FACTOR;
 
 		if (yPos <= 50) {
+			velocity = 0d;
 			acceleration = MAX_ACCELERATION;
 			powerLevel = 0;
-			velocity = 0;
+			horizontalVelocity = 0;
+			getThrust().show(0);
 		}
 
 		// horizontal
 		xPos = xPos + horizontalVelocity;
 
-		if (xPos <= 50 || xPos >= 1750) {
-			horizontalVelocity = 0;
-		}
 		setLocation(new Location((int) xPos, (int) yPos));
 
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
