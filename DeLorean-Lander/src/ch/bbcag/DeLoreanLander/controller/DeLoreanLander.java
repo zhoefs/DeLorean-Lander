@@ -63,7 +63,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 			xPos = 900;
 			yPos = 100;
-			remainFuel = 2000;
+			remainFuel = 1000;
 			fuelExpired = false;
 
 		} else {
@@ -82,7 +82,7 @@ public class DeLoreanLander extends Actor implements GGActorCollisionListener {
 
 			xPos = 900;
 			yPos = 100;
-			remainFuel = 2000;
+			remainFuel = 1000;
 			fuelExpired = false;
 		}
 
