@@ -5,13 +5,13 @@ import ch.bbcag.DeLoreanLander.actor.DeLoreanActor;
 import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 
 public class XboxControllerAdap extends XboxControllerAdapter {
-	private DeLoreanActor deLoreanLander;
+	private DeLoreanActor deLoreanActor;
 	private DeLoreanView deLoreanView;
 	private boolean onHold = false;
 
-	public XboxControllerAdap(DeLoreanActor deLoreanLander, DeLoreanView deLoreanView) {
+	public XboxControllerAdap(DeLoreanActor deLoreanActor, DeLoreanView deLoreanView) {
 		super();
-		this.deLoreanLander = deLoreanLander;
+		this.deLoreanActor = deLoreanActor;
 		this.deLoreanView = deLoreanView;
 	}
 
@@ -19,7 +19,7 @@ public class XboxControllerAdap extends XboxControllerAdapter {
 		if (pressed) {
 			if (!onHold) {
 				onHold = true;
-				this.deLoreanLander.accelerate(direction);
+				this.deLoreanActor.accelerate(direction);
 			}
 		} else {
 			onHold = false;
