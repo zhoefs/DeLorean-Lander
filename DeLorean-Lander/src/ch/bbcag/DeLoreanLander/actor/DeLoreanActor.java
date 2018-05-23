@@ -25,7 +25,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 	private Actor thrust = null;
 
 	private double acceleration = MAX_ACCELERATION; // Acceleration from DeLorean
-	private int horizontalVelocity = 0; // -1: left, 0: stay, 1: right
+	private int horizontalVelocity = 0; // -30: left, 0: stay, 30: right
 	private double velocity = 0d;
 	private int powerLevel = 0;
 	private double xPos = 900;
@@ -62,6 +62,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 			passedTime = passedTime / 1000000000;
 			thrust.removeSelf();
 			gameGrid.doPause();
+			//TODO winnerpanel-switch
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
 			gameGrid.setTitle(null);
@@ -70,7 +71,9 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
 			int score = (int)(remainFuel * 5 + passedTime * 50);
-			if (score <= 0) {
+			
+			//Score doesn`t go under 100
+			if (score <= 100) {
 				score = 100;
 			}
 			gameGrid.getBg().drawText("You've reached " + score + " " + "Points", new Point(780, 500));
