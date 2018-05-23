@@ -7,7 +7,6 @@ public class TimeUtil {
 	}
 
 	public static int getStartTime() {
-		long startTime = System.nanoTime();
 		return 0;
 	}
 
