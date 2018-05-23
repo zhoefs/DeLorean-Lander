@@ -62,7 +62,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 			passedTime = passedTime / 1000000000;
 			thrust.removeSelf();
 			gameGrid.doPause();
-			//TODO winnerpanel-switch
+			// Winnerpanel-switch
 			gameGrid.removeAllActors();
 			gameGrid.setBgImagePath(null);
 			gameGrid.setTitle(null);
@@ -72,7 +72,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
 			int score = (int)(remainFuel * 5 + passedTime * 50);
 			
-			//Score doesn`t go under 100
+			// Score doesn`t go under 100
 			if (score <= 100) {
 				score = 100;
 			}
@@ -94,7 +94,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 
 	public void act() {
 
-		//TODO
+		// DeLorean collides with the front and with the back, on the border
 		Location deLoreanFront = new Location(((int) xPos + DELOREAN_SPRITE_SIZE / 2 - 1), (int) yPos);
 		Location deLoreanBack = new Location(((int) xPos - (DELOREAN_SPRITE_SIZE / 2 - 1)), (int) yPos);
 
@@ -106,9 +106,9 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;
 		String s;
-		//TODO setTitle file
+		// Setting the title on the frame
 		if (fuelExpired) {
-			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg (expired)", velocity,
 					acceleration, remainFuel);
 		} else {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
