@@ -94,6 +94,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 
 	public void act() {
 
+		//TODO
 		Location deLoreanFront = new Location(((int) xPos + DELOREAN_SPRITE_SIZE / 2 - 1), (int) yPos);
 		Location deLoreanBack = new Location(((int) xPos - (DELOREAN_SPRITE_SIZE / 2 - 1)), (int) yPos);
 
@@ -105,6 +106,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		// vertical
 		final double dt = 2 * gameGrid.getSimulationPeriod() / 800.0;
 		String s;
+		//TODO setTitle file
 		if (fuelExpired) {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
 					acceleration, remainFuel);
