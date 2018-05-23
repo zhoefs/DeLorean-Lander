@@ -177,3 +177,4 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		return thrust;
 	}
 }
+
