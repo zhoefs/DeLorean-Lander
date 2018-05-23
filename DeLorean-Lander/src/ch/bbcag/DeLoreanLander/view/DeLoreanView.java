@@ -4,9 +4,9 @@ import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 import ch.bbcag.DeLoreanLander.Xboxcontroller.XboxControllerListener;
-import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
-import ch.bbcag.DeLoreanLander.controller.LandingBaseActor;
-import ch.bbcag.DeLoreanLander.controller.TimeUtil;
+import ch.bbcag.DeLoreanLander.actor.DeLoreanActor;
+import ch.bbcag.DeLoreanLander.actor.LandingBaseActor;
+import ch.bbcag.DeLoreanLander.util.TimeUtil;
 
 public class DeLoreanView extends GameGrid {
 
@@ -16,7 +16,7 @@ public class DeLoreanView extends GameGrid {
 	private static final int CELL_SIZE = 1;
 
 	// Actors
-	private DeLoreanLander lorean = null;
+	private DeLoreanActor deLorean = null;
 	private Actor backgroundImage = null;
 	private Actor firstLandingField = null;
 	private Actor secondLandingField = null;
@@ -28,21 +28,20 @@ public class DeLoreanView extends GameGrid {
 	private Actor upOrDown = new Actor("resources/sprites/up_or_down.png");
 	private Actor leftOrRight = new Actor("resources/sprites/left_or_right.png");
 	private Actor hint = new Actor("resources/sprites/hint.png");
-	
+
 	public DeLoreanView() {
 		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/blueprint.png", false);
 		setSimulationPeriod(50);
 
 		// Adding the actors to the Grid
 		addActor(getBackgroundImage(), new Location(960, 540));
-		
-		addActor(getLorean(), new Location(900, 100));
-		removeActor(lorean);
+
+		addActor(getDeLorean(), new Location(NR_HORIZONTAL_CELLS / 2, 100));
+		removeActor(deLorean);
 		addActor(getFirstLandingField(), new Location(275, 390));
 		addActor(getSecondLandingField(), new Location(800, 970));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
-		
 		addActor(welcome, new Location(860, 200)); // Welcome Text
 		addActor(buttonsToPlay, new Location(650, 400));
 		addActor(pressStart, new Location(930, 500));
@@ -50,30 +49,25 @@ public class DeLoreanView extends GameGrid {
 		addActor(upOrDown, new Location(972, 650));
 		addActor(leftOrRight, new Location(998, 700));
 		addActor(hint, new Location(950, 900));
-		
-		new XboxControllerListener(lorean, this);
+
+		new XboxControllerListener(deLorean, this);
 		show();
 	}
 
 	public void gameStart() {
-		TimeUtil.start();
-		
-//		long startTime = System.nanoTime();
-//		removeAllActors();
+		TimeUtil.setStartTime(System.nanoTime());
 		removeAllActors();
-		
-		
 		addActor(getBackgroundImage(), new Location(960, 540));
-		addActor(getLorean(), new Location(900, 100));
-		getLorean().reset();
-		addActor(getLorean().getThrust(), new Location(900, 140));
+		addActor(getDeLorean(), new Location(900, 100));
+		getDeLorean().reset();
+		addActor(getDeLorean().getThrust(), new Location(900, 140));
 		addActor(getFirstLandingField(), new Location(275, 390));
 		addActor(getSecondLandingField(), new Location(800, 970));
 		addActor(getThirdLandingField(), new Location(1470, 770));
 
-		getLorean().addCollisionActor(getFirstLandingField());
-		getLorean().addCollisionActor(getSecondLandingField());
-		getLorean().addCollisionActor(getThirdLandingField());
+		getDeLorean().addCollisionActor(getFirstLandingField());
+		getDeLorean().addCollisionActor(getSecondLandingField());
+		getDeLorean().addCollisionActor(getThirdLandingField());
 
 		refresh();
 		doRun();
@@ -94,15 +88,15 @@ public class DeLoreanView extends GameGrid {
 		new DeLoreanView();
 	}
 
-	private DeLoreanLander getLorean() {
-		if (lorean == null) {
-			setLorean(new DeLoreanLander());
+	private DeLoreanActor getDeLorean() {
+		if (deLorean == null) {
+			setDeLorean(new DeLoreanActor());
 		}
-		return lorean;
+		return deLorean;
 	}
 
-	private void setLorean(DeLoreanLander lorean) {
-		this.lorean = lorean;
+	private void setDeLorean(DeLoreanActor deLorean) {
+		this.deLorean = deLorean;
 	}
 
 	private Actor getSecondLandingField() {

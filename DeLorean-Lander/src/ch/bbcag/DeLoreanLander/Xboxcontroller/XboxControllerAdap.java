@@ -1,16 +1,15 @@
 package ch.bbcag.DeLoreanLander.Xboxcontroller;
 
 import ch.aplu.xboxcontroller.XboxControllerAdapter;
-import ch.bbcag.DeLoreanLander.controller.DeLoreanLander;
+import ch.bbcag.DeLoreanLander.actor.DeLoreanActor;
 import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 
 public class XboxControllerAdap extends XboxControllerAdapter {
-	private DeLoreanLander deLoreanLander;
+	private DeLoreanActor deLoreanLander;
 	private DeLoreanView deLoreanView;
-
 	private boolean onHold = false;
 
-	public XboxControllerAdap(DeLoreanLander deLoreanLander, DeLoreanView deLoreanView) {
+	public XboxControllerAdap(DeLoreanActor deLoreanLander, DeLoreanView deLoreanView) {
 		super();
 		this.deLoreanLander = deLoreanLander;
 		this.deLoreanView = deLoreanView;
