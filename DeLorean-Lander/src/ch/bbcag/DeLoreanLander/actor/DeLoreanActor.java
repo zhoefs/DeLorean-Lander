@@ -126,60 +126,9 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		// horizontal
 		xPos = xPos + horizontalVelocity;
 
-<<<<<<< HEAD
+
 		setLocation(new Location(xPos, yPos));
 
-		getThrust().setLocation(new Location(xPos, yPos + 40));
-		horizontalVelocity = 0;
-
-		if (remainFuel <= 0) {
-			remainFuel = 0;
-			powerLevel = 0;
-			acceleration = MAX_ACCELERATION;
-			fuelExpired = true;
-			thrust.hide();
-		}
-	}
-
-	public void accelerate(int dpadCode) {
-
-		final double accelerationFactor = 2 * MAX_ACCELERATION / MAX_POWER_LEVELS;
-
-		// left
-		if (dpadCode == 5 || dpadCode == 6 || dpadCode == 7) {
-			horizontalVelocity -= 30;
-		}
-
-		// right
-		if (dpadCode == 1 || dpadCode == 2 || dpadCode == 3) {
-			horizontalVelocity += 30;
-		}
-
-		// up
-		if (dpadCode == 0) {
-			if (powerLevel < MAX_POWER_LEVELS) {
-				acceleration -= accelerationFactor;
-				powerLevel += 1;
-				getThrust().show(powerLevel);
-			}
-		}
-
-		// down
-		if (dpadCode == 4) {
-			if (powerLevel > 0) {
-				acceleration += accelerationFactor;
-				powerLevel -= 1;
-				getThrust().show(powerLevel);
-			}
-		}
-	}
-
-	public Actor getThrust() {
-		return thrust;
-	}
-}
-
-=======
 		setLocation(new Location((int) xPos, (int) yPos));
 
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
@@ -231,4 +180,3 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		return thrust;
 	}
 }
->>>>>>> refs/remotes/origin/master
