@@ -126,12 +126,9 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		// horizontal
 		xPos = xPos + horizontalVelocity;
 
-
 		setLocation(new Location(xPos, yPos));
 
-		setLocation(new Location((int) xPos, (int) yPos));
-
-		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
+		getThrust().setLocation(new Location(xPos, yPos + 40));
 		horizontalVelocity = 0;
 
 		if (remainFuel <= 0) {
