@@ -21,16 +21,16 @@ public class DeLoreanView extends GameGrid {
 	private Actor firstLandingField = null;
 	private Actor secondLandingField = null;
 	private Actor thirdLandingField = null;
-	private Actor welcome = new Actor("resources/sprites/welcome.png");
-	private Actor buttonsToPlay = new Actor("resources/sprites/buttons_to_play.png");
-	private Actor pressStart = new Actor("resources/sprites/press_start.png");
-	private Actor pressBack = new Actor("resources/sprites/press_back.png");
-	private Actor upOrDown = new Actor("resources/sprites/up_or_down.png");
-	private Actor leftOrRight = new Actor("resources/sprites/left_or_right.png");
-	private Actor hint = new Actor("resources/sprites/hint.png");
+	private Actor welcome = new Actor("sprites/welcome.png");
+	private Actor buttonsToPlay = new Actor("sprites/buttons_to_play.png");
+	private Actor pressStart = new Actor("sprites/press_start.png");
+	private Actor pressBack = new Actor("sprites/press_back.png");
+	private Actor upOrDown = new Actor("sprites/up_or_down.png");
+	private Actor leftOrRight = new Actor("sprites/left_or_right.png");
+	private Actor hint = new Actor("sprites/hint.png");
 
 	public DeLoreanView() {
-		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "resources/sprites/blueprint.png", false);
+		super(NR_HORIZONTAL_CELLS, NR_VERTICAL_CELLS, CELL_SIZE, null, "sprites/blueprint.png", false);
 		setSimulationPeriod(50);
 
 		// Adding the actors to the Grid
@@ -57,6 +57,7 @@ public class DeLoreanView extends GameGrid {
 	public void gameStart() {
 		TimeUtil.setStartTime(System.nanoTime());
 		removeAllActors();
+		setBgImagePath("sprites/blueprint.png");
 		addActor(getBackgroundImage(), new Location(960, 540));
 		addActor(getDeLorean(), new Location(900, 100));
 		getDeLorean().reset();
@@ -75,7 +76,7 @@ public class DeLoreanView extends GameGrid {
 
 	public Actor getBackgroundImage() {
 		if (backgroundImage == null) {
-			setBackgroundImage(new Actor("resources/sprites/backgroundImageWithClouds.png"));
+			setBackgroundImage(new Actor("sprites/backgroundImageWithClouds.png"));
 		}
 		return backgroundImage;
 	}
@@ -101,7 +102,7 @@ public class DeLoreanView extends GameGrid {
 
 	private Actor getSecondLandingField() {
 		if (secondLandingField == null) {
-			setSecondLandingField(new LandingBaseActor("resources/sprites/landing_path.png"));
+			setSecondLandingField(new LandingBaseActor("sprites/landing_path.png"));
 		}
 		return secondLandingField;
 	}
@@ -112,7 +113,7 @@ public class DeLoreanView extends GameGrid {
 
 	private Actor getThirdLandingField() {
 		if (thirdLandingField == null) {
-			setThirdLandingField(new LandingBaseActor("resources/sprites/landing_path.png"));
+			setThirdLandingField(new LandingBaseActor("sprites/landing_path.png"));
 		}
 		return thirdLandingField;
 	}
@@ -123,7 +124,7 @@ public class DeLoreanView extends GameGrid {
 
 	private Actor getFirstLandingField() {
 		if (firstLandingField == null) {
-			setFirstLandingField(new LandingBaseActor("resources/sprites/landing_path.png"));
+			setFirstLandingField(new LandingBaseActor("sprites/landing_path.png"));
 		}
 		return firstLandingField;
 	}
