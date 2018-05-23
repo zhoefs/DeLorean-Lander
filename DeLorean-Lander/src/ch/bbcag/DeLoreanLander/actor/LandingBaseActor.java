@@ -1,4 +1,4 @@
-package ch.bbcag.DeLoreanLander.controller;
+package ch.bbcag.DeLoreanLander.actor;
 
 import ch.aplu.jgamegrid.Actor;
 

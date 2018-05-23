@@ -7,7 +7,6 @@ import ch.bbcag.DeLoreanLander.view.DeLoreanView;
 public class XboxControllerAdap extends XboxControllerAdapter {
 	private DeLoreanActor deLoreanLander;
 	private DeLoreanView deLoreanView;
-
 	private boolean onHold = false;
 
 	public XboxControllerAdap(DeLoreanActor deLoreanLander, DeLoreanView deLoreanView) {
