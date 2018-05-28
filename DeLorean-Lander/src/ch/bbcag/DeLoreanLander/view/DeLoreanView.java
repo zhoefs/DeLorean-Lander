@@ -3,6 +3,7 @@ package ch.bbcag.DeLoreanLander.view;
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
+import ch.bbcag.DeLoreanLander.Xboxcontroller.KeyControllerAdapter;
 import ch.bbcag.DeLoreanLander.Xboxcontroller.XboxControllerListener;
 import ch.bbcag.DeLoreanLander.actor.DeLoreanActor;
 import ch.bbcag.DeLoreanLander.actor.LandingBaseActor;
@@ -51,6 +52,7 @@ public class DeLoreanView extends GameGrid {
 		addActor(hint, new Location(950, 900));
 
 		new XboxControllerListener(deLorean, this);
+		this.addKeyListener(new KeyControllerAdapter(deLorean, this));
 		show();
 	}
 

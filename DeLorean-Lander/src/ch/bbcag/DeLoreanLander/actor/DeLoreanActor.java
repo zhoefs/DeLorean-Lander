@@ -33,7 +33,6 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 	private double remainFuel = 1000.0d;
 	private boolean fuelExpired = false;
 
-
 	public DeLoreanActor() {
 		super("sprites/lorean_car.png");
 		addActorCollisionListener(this);
@@ -54,8 +53,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 
 	@Override
 	public int collide(Actor deLorean, Actor actor) {
-		
-		
+
 		if (actor instanceof LandingBaseActor && velocity <= 10) {
 			long endTime = System.nanoTime();
 			long passedTime = endTime - TimeUtil.getStartTime();
@@ -70,8 +68,8 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 			gameGrid.addActor(firework, new Location(900, 800));
 			gameGrid.addActor(new TextActor("Press START to Restart or BACK to Leave", Color.WHITE, Color.BLACK,
 					new Font(Font.SANS_SERIF, Font.BOLD, 24)), new Location(700, 400));
-			int score = (int)(remainFuel * 5 + passedTime * 50);
-			
+			int score = (int) (remainFuel * 5 + passedTime * 50);
+
 			// Score doesn`t go under 100
 			if (score <= 100) {
 				score = 100;
@@ -108,8 +106,8 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		String s;
 		// Setting the title on the frame
 		if (fuelExpired) {
-			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg (expired)", velocity,
-					acceleration, remainFuel);
+			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg (expired)",
+					velocity, acceleration, remainFuel);
 		} else {
 			s = String.format("   Velocity = %10.2f m/s    Acceleration = %10.2f m/s    Fuel = %10.0f kg", velocity,
 					acceleration, remainFuel);
@@ -129,9 +127,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 
 		// horizontal
 		xPos = xPos + horizontalVelocity;
-
 		setLocation(new Location((int) xPos, (int) yPos));
-
 		getThrust().setLocation(new Location((int) xPos, (int) yPos + 40));
 		horizontalVelocity = 0;
 

@@ -15,7 +15,6 @@ public class XboxControllerListener {
 			JOptionPane.showMessageDialog(null, "XBox Controller not connected.", "Fatal error",
 					JOptionPane.ERROR_MESSAGE);
 			XBOX_CONTROLLER.release();
-			System.exit(0);
 			return;
 		}
 		XBOX_CONTROLLER.addXboxControllerListener(new XboxControllerAdap(deLoreanLander, deLoreanView));
