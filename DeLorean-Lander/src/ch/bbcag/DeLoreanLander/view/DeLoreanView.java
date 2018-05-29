@@ -75,7 +75,8 @@ public class DeLoreanView extends GameGrid {
 		refresh();
 		doRun();
 	}
-
+	
+	//Getter and Setter
 	public Actor getBackgroundImage() {
 		if (backgroundImage == null) {
 			setBackgroundImage(new Actor("sprites/backgroundImageWithClouds.png"));

@@ -55,6 +55,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 	public int collide(Actor deLorean, Actor actor) {
 
 		if (actor instanceof LandingBaseActor && velocity <= 10) {
+			//time-util used for score
 			long endTime = System.nanoTime();
 			long passedTime = endTime - TimeUtil.getStartTime();
 			passedTime = passedTime / 1000000000;
@@ -90,6 +91,7 @@ public class DeLoreanActor extends Actor implements GGActorCollisionListener {
 		return 0;
 	}
 
+	//game-loop
 	public void act() {
 
 		// DeLorean collides with the front and with the back, on the border
